@@ -146,10 +146,10 @@ const Dashboard = () => {
   };
 
   const getEloColor = (elo: number) => {
-    if (elo >= 2750) return 'text-green-400';
-    if (elo >= 2650) return 'text-blue-400';
-    if (elo >= 2600) return 'text-yellow-400';
-    return 'text-red-400';
+    if (elo >= 2750) return 'text-neo-green';
+    if (elo >= 2650) return 'text-neo-blue';
+    if (elo >= 2600) return 'text-neo-yellow';
+    return 'text-neo-red';
   };
 
   const getEloRank = (elo: number) => {
@@ -160,61 +160,69 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
+    <div className="min-h-screen bg-neo-cream text-neo-black">
+      {/* Neo-Brutalism background shapes */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-10 right-10 w-20 h-20 bg-neo-red transform rotate-12 border-3 border-neo-black shadow-neo-lg"></div>
+        <div className="absolute bottom-20 left-20 w-16 h-16 bg-neo-blue transform rotate-[-25deg] border-3 border-neo-black shadow-neo"></div>
+        <div className="absolute top-1/3 right-1/4 w-12 h-12 bg-neo-yellow transform rotate-45 border-3 border-neo-black shadow-neo-lg"></div>
+        <div className="absolute bottom-1/3 right-10 w-14 h-14 bg-neo-green transform rotate-[-15deg] border-3 border-neo-black shadow-neo"></div>
+        <div className="absolute top-2/3 left-10 w-18 h-18 bg-neo-purple transform rotate-30 border-3 border-neo-black shadow-neo-xl"></div>
+      </div>
+
       {/* Header */}
-      <div className="border-b border-white/10 bg-black/20 backdrop-blur-sm">
+      <div className="border-b-4 border-neo-black bg-neo-yellow shadow-neo relative z-10">
         <div className="container mx-auto px-4 sm:px-6 py-4">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div className="flex items-center space-x-3">
-              <div className="relative">
-                <Shield className="w-6 sm:w-8 h-6 sm:h-8 text-cyan-400" />
-                <div className="absolute inset-0 bg-cyan-400/20 rounded-full blur-md"></div>
+              <div className="relative bg-neo-cyan border-3 border-neo-black p-2 transform rotate-[-3deg] shadow-neo">
+                <Shield className="w-6 sm:w-8 h-6 sm:h-8 text-neo-black" />
               </div>
-              <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+              <h1 className="text-xl sm:text-2xl font-black text-neo-black transform rotate-[1deg]">
                 Oper8a Dashboard
               </h1>
             </div>
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full sm:w-auto">
               {/* ELO Display */}
-              <div className="bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 px-3 sm:px-4 py-2">
+              <div className="bg-neo-white border-3 border-neo-black px-3 sm:px-4 py-2 shadow-neo transform rotate-[-1deg]">
                 <div className="flex items-center space-x-2 sm:space-x-3">
                   <div className="text-center">
-                    <div className={`text-sm sm:text-lg font-bold ${getEloColor(userElo)}`}>
+                    <div className={`text-sm sm:text-lg font-black ${getEloColor(userElo)}`}>
                       {userElo}
                     </div>
-                    <div className="text-xs text-gray-400">ELO</div>
+                    <div className="text-xs font-bold text-neo-charcoal">ELO</div>
                   </div>
                   <div className="text-center">
-                    <div className={`text-xs sm:text-sm font-medium ${getEloColor(userElo)}`}>
+                    <div className={`text-xs sm:text-sm font-black ${getEloColor(userElo)}`}>
                       {getEloRank(userElo)}
                     </div>
-                    <div className="text-xs text-gray-400">Rank</div>
+                    <div className="text-xs font-bold text-neo-charcoal">Rank</div>
                   </div>
                 </div>
               </div>
               
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 text-sm text-gray-300 w-full sm:w-auto">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 text-sm text-neo-black w-full sm:w-auto">
                 <Dialog open={settingsOpen} onOpenChange={setSettingsOpen}>
                   <DialogTrigger asChild>
-                    <Button variant="ghost" className="p-2 rounded-full hover:bg-cyan-900/30" aria-label="Settings">
-                      <SettingsIcon className="w-4 sm:w-5 h-4 sm:h-5 text-cyan-400" />
+                    <Button variant="ghost" className="p-2 bg-neo-orange border-3 border-neo-black shadow-neo hover:shadow-neo-lg transform rotate-[2deg] hover:rotate-0" aria-label="Settings">
+                      <SettingsIcon className="w-4 sm:w-5 h-4 sm:h-5 text-neo-black" />
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="max-w-lg w-full bg-slate-900 border border-cyan-400 text-white">
+                  <DialogContent className="max-w-lg w-full bg-neo-white border-4 border-neo-black text-neo-black shadow-neo-2xl">
                     <DialogHeader>
-                      <DialogTitle className="flex items-center space-x-2">
-                        <SettingsIcon className="w-5 h-5 text-cyan-400" />
+                      <DialogTitle className="flex items-center space-x-2 font-black">
+                        <SettingsIcon className="w-5 h-5 text-neo-purple" />
                         <span>IPFS Configuration</span>
                       </DialogTitle>
                     </DialogHeader>
                     {/* IPFS Configuration Panel */}
-                    <Card className="bg-white/5 backdrop-blur-sm border-white/10 shadow-none border-none">
+                    <Card className="bg-neo-beige border-neo-black shadow-neo border-3">
                       <CardHeader>
                         <div className="flex items-center space-x-3">
-                          <Key className="w-6 h-6 text-orange-400" />
+                          <Key className="w-6 h-6 text-neo-orange" />
                           <div>
-                            <CardTitle className="text-white">Pinata API Keys</CardTitle>
-                            <CardDescription className="text-gray-300">
+                            <CardTitle className="text-neo-black">Pinata API Keys</CardTitle>
+                            <CardDescription className="text-neo-charcoal">
                               {hasApiKeys ? 'Update your Pinata credentials' : 'Configure Pinata IPFS storage'}
                             </CardDescription>
                           </div>
@@ -222,31 +230,32 @@ const Dashboard = () => {
                       </CardHeader>
                       <CardContent className="space-y-4">
                         <div className="space-y-2">
-                          <Label htmlFor="api-key" className="text-white">API Key</Label>
+                          <Label htmlFor="api-key" className="text-neo-black font-bold">API Key</Label>
                           <Input
                             id="api-key"
                             type="password"
                             placeholder="Enter your Pinata API key"
                             value={pinataApiKey}
                             onChange={(e) => setPinataApiKey(e.target.value)}
-                            className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
+                            className="bg-neo-white border-neo-black text-neo-black placeholder:text-neo-charcoal"
                           />
                         </div>
                         <div className="space-y-2">
-                          <Label htmlFor="secret-key" className="text-white">Secret Key</Label>
+                          <Label htmlFor="secret-key" className="text-neo-black font-bold">Secret Key</Label>
                           <Input
                             id="secret-key"
                             type="password"
                             placeholder="Enter your Pinata secret key"
                             value={pinataSecretKey}
                             onChange={(e) => setPinataSecretKey(e.target.value)}
-                            className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
+                            className="bg-neo-white border-neo-black text-neo-black placeholder:text-neo-charcoal"
                           />
                         </div>
                         <Button 
                           onClick={handleSaveApiKeys}
                           disabled={isLoading || !pinataApiKey || !pinataSecretKey}
-                          className="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700"
+                          className="w-full bg-neo-orange border-neo-black text-neo-white hover:bg-neo-red"
+                          variant="brutal"
                         >
                           {isLoading ? (
                             <>
@@ -263,25 +272,25 @@ const Dashboard = () => {
                     </Card>
                   </DialogContent>
                 </Dialog>
-                <span className="hidden sm:inline">Connected:</span>
+                <span className="hidden sm:inline font-black">Connected:</span>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="text-cyan-400 hover:text-cyan-300 hover:bg-white/10 px-2 sm:px-3 py-1 h-auto border border-white/20 rounded-lg text-xs sm:text-sm">
+                    <Button variant="ghost" className="text-neo-black hover:text-neo-black bg-neo-cyan border-3 border-neo-black px-2 sm:px-3 py-1 h-auto text-xs sm:text-sm shadow-neo hover:shadow-neo-lg transform rotate-[-1deg] hover:rotate-0">
                       <Wallet className="w-3 sm:w-4 h-3 sm:h-4 mr-1 sm:mr-2" />
-                      <span className="truncate max-w-[100px] sm:max-w-none">{walletAddress}</span>
+                      <span className="truncate max-w-[100px] sm:max-w-none font-bold">{walletAddress}</span>
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent className="bg-slate-800 border-white/20 text-white">
-                    <DropdownMenuItem onClick={handleCopyAddress} className="hover:bg-white/10">
+                  <DropdownMenuContent className="bg-neo-white border-3 border-neo-black text-neo-black shadow-neo-xl">
+                    <DropdownMenuItem onClick={handleCopyAddress} className="hover:bg-neo-yellow font-bold">
                       <Copy className="w-4 h-4 mr-2" />
                       Copy Address
                     </DropdownMenuItem>
-                    <DropdownMenuSeparator className="bg-white/20" />
-                    <DropdownMenuItem onClick={handleChangeWallet} className="hover:bg-white/10">
+                    <DropdownMenuSeparator className="bg-neo-black" />
+                    <DropdownMenuItem onClick={handleChangeWallet} className="hover:bg-neo-blue hover:text-neo-white font-bold">
                       <Wallet className="w-4 h-4 mr-2" />
                       Change Wallet
                     </DropdownMenuItem>
-                    <DropdownMenuItem onClick={handleDisconnect} className="hover:bg-white/10 text-red-400">
+                    <DropdownMenuItem onClick={handleDisconnect} className="hover:bg-neo-red hover:text-neo-white text-neo-red font-bold">
                       <LogOut className="w-4 h-4 mr-2" />
                       Disconnect
                     </DropdownMenuItem>
@@ -293,17 +302,17 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-4 sm:py-8">
+      <div className="container mx-auto px-4 py-4 sm:py-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
           {/* Left: Network Manager, Upload File, Network Members (stacked, ~5/12 width) */}
           <div className="lg:col-span-5 flex flex-col gap-4 sm:gap-6">
-            <Card className="bg-white/5 backdrop-blur-sm border-white/10">
+            <Card className="bg-neo-white border-neo-black shadow-neo-lg transform rotate-[-1deg] hover:rotate-0 transition-all duration-300 hover:shadow-neo-xl">
               <CardHeader>
                 <div className="flex items-center space-x-3">
-                  <Database className="w-6 h-6 text-blue-400" />
+                  <Database className="w-6 h-6 text-neo-blue" />
                   <div>
-                    <CardTitle className="text-white">Network</CardTitle>
-                    <CardDescription className="text-gray-300">
+                    <CardTitle className="text-neo-black">Network</CardTitle>
+                    <CardDescription className="text-neo-charcoal">
                       Manage and select your network
                     </CardDescription>
                   </div>
@@ -318,13 +327,13 @@ const Dashboard = () => {
                 />
               </CardContent>
             </Card>
-            <Card className="bg-white/5 backdrop-blur-sm border-white/10">
+            <Card className="bg-neo-white border-neo-black shadow-neo-lg transform rotate-[1deg] hover:rotate-0 transition-all duration-300 hover:shadow-neo-xl">
               <CardHeader>
                 <div className="flex items-center space-x-3">
-                  <Upload className="w-6 h-6 text-green-400" />
+                  <Upload className="w-6 h-6 text-neo-green" />
                   <div>
-                    <CardTitle className="text-white">Upload File</CardTitle>
-                    <CardDescription className="text-gray-300">
+                    <CardTitle className="text-neo-black">Upload File</CardTitle>
+                    <CardDescription className="text-neo-charcoal">
                       {selectedNetwork 
                         ? `Upload files to ${selectedNetwork.name} network with blockchain tracking`
                         : 'Upload files to your personal storage'
@@ -345,13 +354,13 @@ const Dashboard = () => {
             </Card>
             {/* Network Members */}
             {selectedNetwork && (
-              <Card className="bg-white/5 backdrop-blur-sm border-white/10">
+              <Card className="bg-neo-white border-neo-black shadow-neo-lg transform rotate-[-2deg] hover:rotate-0 transition-all duration-300 hover:shadow-neo-xl">
                 <CardHeader>
                   <div className="flex items-center space-x-3">
-                    <Database className="w-5 sm:w-6 h-5 sm:h-6 text-yellow-400" />
+                    <Database className="w-5 sm:w-6 h-5 sm:h-6 text-neo-yellow" />
                     <div>
-                      <CardTitle className="text-white text-base sm:text-lg">Network Members</CardTitle>
-                      <CardDescription className="text-gray-300 text-sm">
+                      <CardTitle className="text-neo-black text-base sm:text-lg">Network Members</CardTitle>
+                      <CardDescription className="text-neo-charcoal text-sm">
                         Members in the selected network
                       </CardDescription>
                     </div>
@@ -383,14 +392,14 @@ const Dashboard = () => {
 
           {/* Right: Personal Files, Network Files (stacked, ~7/12 width) */}
           <div className="lg:col-span-7 flex flex-col gap-4 sm:gap-6">
-            <Card className="bg-white/5 backdrop-blur-sm border-white/10">
+            <Card className="bg-neo-white border-neo-black shadow-neo-lg transform rotate-[1deg] hover:rotate-0 transition-all duration-300 hover:shadow-neo-xl">
               <CardHeader>
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                   <div className="flex items-center space-x-3">
-                    <Database className="w-5 sm:w-6 h-5 sm:h-6 text-purple-400" />
+                    <Database className="w-5 sm:w-6 h-5 sm:h-6 text-neo-purple" />
                     <div>
-                      <CardTitle className="text-white text-base sm:text-lg">Personal Files</CardTitle>
-                      <CardDescription className="text-gray-300 text-sm">
+                      <CardTitle className="text-neo-black text-base sm:text-lg">Personal Files</CardTitle>
+                      <CardDescription className="text-neo-charcoal text-sm">
                         Files stored on IPFS via Pinata with blockchain metadata
                       </CardDescription>
                     </div>
@@ -401,17 +410,16 @@ const Dashboard = () => {
                       value={personalFilesSearch}
                       onChange={e => setPersonalFilesSearch(e.target.value)}
                       placeholder="Search..."
-                      className="bg-transparent border border-white/10 rounded px-2 py-1 text-sm text-cyan-200 focus:outline-none focus:border-cyan-400 placeholder:text-cyan-400 flex-1 sm:w-32"
-                      style={{ transition: 'border 0.2s' }}
+                      className="bg-neo-white border-3 border-neo-black px-2 py-1 text-sm text-neo-black focus:outline-none focus:border-neo-purple placeholder:text-neo-charcoal flex-1 sm:w-32 font-bold shadow-neo transform rotate-[-1deg] focus:rotate-0 transition-all duration-200"
                     />
                     <Button 
                       onClick={handleRefreshFiles}
                       variant="outline" 
                       size="sm"
-                      className="border-cyan-400/30 bg-cyan-500/10 text-cyan-300 hover:bg-cyan-500/20 hover:text-cyan-200 hover:border-cyan-400/50 whitespace-nowrap"
+                      className="border-neo-black bg-neo-cyan text-neo-black hover:bg-neo-blue hover:text-neo-white border-3 shadow-neo whitespace-nowrap transform rotate-[1deg] hover:rotate-0"
                     >
                       <RefreshCw className="w-4 h-4 mr-1 sm:mr-2" />
-                      <span className="hidden sm:inline">Refresh</span>
+                      <span className="hidden sm:inline font-bold">Refresh</span>
                     </Button>
                   </div>
                 </div>
@@ -427,14 +435,14 @@ const Dashboard = () => {
                 </div>
               </CardContent>
             </Card>
-            <Card className="bg-white/5 backdrop-blur-sm border-white/10">
+            <Card className="bg-neo-white border-neo-black shadow-neo-lg transform rotate-[-1deg] hover:rotate-0 transition-all duration-300 hover:shadow-neo-xl">
               <CardHeader>
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                   <div className="flex items-center space-x-3">
-                    <Database className="w-5 sm:w-6 h-5 sm:h-6 text-cyan-400" />
+                    <Database className="w-5 sm:w-6 h-5 sm:h-6 text-neo-cyan" />
                     <div>
-                      <CardTitle className="text-white text-base sm:text-lg">Network Files</CardTitle>
-                      <CardDescription className="text-gray-300 text-sm">
+                      <CardTitle className="text-neo-black text-base sm:text-lg">Network Files</CardTitle>
+                      <CardDescription className="text-neo-charcoal text-sm">
                         Files shared in the selected network
                       </CardDescription>
                     </div>
@@ -445,17 +453,16 @@ const Dashboard = () => {
                       value={networkFilesSearch}
                       onChange={e => setNetworkFilesSearch(e.target.value)}
                       placeholder="Search..."
-                      className="bg-transparent border border-white/10 rounded px-2 py-1 text-sm text-cyan-200 focus:outline-none focus:border-cyan-400 placeholder:text-cyan-400 flex-1 sm:w-32"
-                      style={{ transition: 'border 0.2s' }}
+                      className="bg-neo-white border-3 border-neo-black px-2 py-1 text-sm text-neo-black focus:outline-none focus:border-neo-purple placeholder:text-neo-charcoal flex-1 sm:w-32 font-bold shadow-neo transform rotate-[1deg] focus:rotate-0 transition-all duration-200"
                     />
                     <Button 
                       onClick={handleRefreshFiles}
                       variant="outline" 
                       size="sm"
-                      className="border-cyan-400/30 bg-cyan-500/10 text-cyan-300 hover:bg-cyan-500/20 hover:text-cyan-200 hover:border-cyan-400/50 whitespace-nowrap"
+                      className="border-neo-black bg-neo-cyan text-neo-black hover:bg-neo-blue hover:text-neo-white border-3 shadow-neo whitespace-nowrap transform rotate-[-1deg] hover:rotate-0"
                     >
                       <RefreshCw className="w-4 h-4 mr-1 sm:mr-2" />
-                      <span className="hidden sm:inline">Refresh</span>
+                      <span className="hidden sm:inline font-bold">Refresh</span>
                     </Button>
                   </div>
                 </div>
@@ -470,7 +477,7 @@ const Dashboard = () => {
                       search={networkFilesSearch}
                     />
                   ) : (
-                    <div className="text-gray-400 p-4 text-center text-sm">Select a network to view files.</div>
+                    <div className="text-neo-charcoal p-4 text-center text-sm font-bold bg-neo-beige border-3 border-neo-black shadow-neo transform rotate-[-1deg]">Select a network to view files.</div>
                   )}
                 </div>
               </CardContent>
