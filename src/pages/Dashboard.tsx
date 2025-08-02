@@ -315,7 +315,6 @@ const Dashboard = () => {
                   username={username}
                   onNetworkSelect={handleNetworkSelect}
                   selectedNetwork={selectedNetwork}
-                  scrollIfMany={true}
                 />
               </CardContent>
             </Card>

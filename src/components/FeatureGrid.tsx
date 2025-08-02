@@ -9,47 +9,68 @@ const FeatureGrid = () => {
       icon: Shield,
       title: "Advanced Security",
       description: "Military-grade encryption with blockchain verification for ultimate data protection",
-      gradient: "from-cyan-500 to-blue-600"
+      bgColor: "bg-neo-red",
+      borderColor: "border-neo-black",
+      textColor: "text-neo-white",
+      rotation: "rotate-[-2deg]"
     },
     {
       icon: Network,
       title: "Trusted Networks",
       description: "Build and manage your network of trusted peers for secure file verification",
-      gradient: "from-purple-500 to-pink-600"
+      bgColor: "bg-neo-blue",
+      borderColor: "border-neo-black",
+      textColor: "text-neo-white",
+      rotation: "rotate-[1deg]"
     },
     {
       icon: CheckCircle,
       title: "Real-time Alerts",
       description: "Instant notifications when file duplications are detected across your network",
-      gradient: "from-green-500 to-teal-600"
+      bgColor: "bg-neo-green",
+      borderColor: "border-neo-black",
+      textColor: "text-neo-black",
+      rotation: "rotate-[-1deg]"
     },
     {
       icon: Lock,
       title: "Data Integrity",
       description: "Cryptographic hashing ensures your files remain unchanged and authentic",
-      gradient: "from-orange-500 to-red-600"
+      bgColor: "bg-neo-orange",
+      borderColor: "border-neo-black",
+      textColor: "text-neo-black",
+      rotation: "rotate-[2deg]"
     },
     {
       icon: Zap,
       title: "Lightning Fast",
       description: "Powered by Solana's high-speed blockchain for instant verification",
-      gradient: "from-yellow-500 to-orange-600"
+      bgColor: "bg-neo-yellow",
+      borderColor: "border-neo-black",
+      textColor: "text-neo-black",
+      rotation: "rotate-[-3deg]"
     },
     {
       icon: Globe,
       title: "Decentralized",
       description: "No single point of failure with distributed verification across the network",
-      gradient: "from-indigo-500 to-purple-600"
+      bgColor: "bg-neo-purple",
+      borderColor: "border-neo-black",
+      textColor: "text-neo-white",
+      rotation: "rotate-[1deg]"
     }
   ];
 
   return (
-    <div className="container mx-auto px-6 py-20">
+    <div className="container mx-auto px-6 py-20 relative z-10">
       <div className="text-center mb-16">
-        <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-          Why Choose Operata?
+        <h2 className="text-4xl font-black mb-4 text-neo-black">
+          Why Choose{' '}
+          <span className="bg-neo-magenta text-neo-white px-3 py-1 transform rotate-[-1deg] inline-block border-3 border-neo-black shadow-neo">
+            Operata?
+          </span>
         </h2>
-        <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+        <p className="text-xl text-neo-charcoal max-w-2xl mx-auto font-bold">
           Experience next-generation file management with blockchain-powered security
         </p>
       </div>
@@ -58,21 +79,20 @@ const FeatureGrid = () => {
         {features.map((feature, index) => (
           <Card 
             key={index} 
-            className="bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl group"
+            className={`${feature.bgColor} ${feature.borderColor} ${feature.textColor} border-4 shadow-neo-lg hover:shadow-neo-xl transform ${feature.rotation} hover:rotate-0 transition-all duration-300 hover:translate-x-[-4px] hover:translate-y-[-4px] group`}
           >
-            <CardHeader className="text-center pb-4">
+            <CardHeader className="text-center pb-4 bg-neo-yellow border-b-4 border-neo-black">
               <div className="relative inline-block mb-4">
-                <div className={`w-16 h-16 bg-gradient-to-r ${feature.gradient} rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300`}>
-                  <feature.icon className="w-8 h-8 text-white" />
+                <div className="w-16 h-16 bg-neo-black border-3 border-neo-black flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300 transform rotate-[5deg] group-hover:rotate-0">
+                  <feature.icon className="w-8 h-8 text-neo-white" />
                 </div>
-                <div className={`absolute inset-0 bg-gradient-to-r ${feature.gradient} rounded-full blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-300`}></div>
               </div>
-              <CardTitle className="text-xl font-bold text-white group-hover:text-cyan-300 transition-colors duration-300">
+              <CardTitle className={`text-xl font-black text-neo-black group-hover:text-neo-charcoal transition-colors duration-300 transform rotate-[-1deg] group-hover:rotate-0`}>
                 {feature.title}
               </CardTitle>
             </CardHeader>
-            <CardContent>
-              <CardDescription className="text-gray-300 text-center leading-relaxed">
+            <CardContent className="p-6">
+              <CardDescription className={`text-center leading-relaxed font-bold ${feature.textColor}`}>
                 {feature.description}
               </CardDescription>
             </CardContent>
