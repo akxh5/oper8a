@@ -1,0 +1,26 @@
+/* Neo-brutalism utility classes */
+.neo-border {
+  @apply border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+}
+
+.neo-hover {
+  @apply transform transition-all duration-200 hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)];
+}
+
+.neo-rotate {
+  @apply transform hover:rotate-0 transition-transform duration-300;
+}
+
+/* Animation keyframes */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+.neo-float {
+  animation: float 6s ease-in-out infinite;
+}

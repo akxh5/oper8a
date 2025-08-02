@@ -10,75 +10,77 @@ const Index = () => {
   const [isWalletSelectorOpen, setIsWalletSelectorOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white overflow-hidden">
-      {/* Animated background elements with bubbles */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
-        
-        {/* Floating bubbles */}
-        <div className="absolute top-1/4 left-1/4 w-12 h-12 bg-white/5 rounded-full animate-[float_6s_ease-in-out_infinite] blur-sm"></div>
-        <div className="absolute top-3/4 right-1/4 w-8 h-8 bg-purple-400/10 rounded-full animate-[float_4s_ease-in-out_infinite_2s] blur-sm"></div>
-        <div className="absolute top-1/2 right-1/3 w-16 h-16 bg-cyan-400/5 rounded-full animate-[float_8s_ease-in-out_infinite_1s] blur-sm"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-10 h-10 bg-blue-400/8 rounded-full animate-[float_5s_ease-in-out_infinite_3s] blur-sm"></div>
-        <div className="absolute top-1/6 right-1/6 w-6 h-6 bg-green-400/6 rounded-full animate-[float_7s_ease-in-out_infinite_1.5s] blur-sm"></div>
-        <div className="absolute bottom-1/3 right-1/2 w-14 h-14 bg-pink-400/4 rounded-full animate-[float_6s_ease-in-out_infinite_2.5s] blur-sm"></div>
-        
-        {/* Additional bubbles */}
-        <div className="absolute top-10 left-1/2 w-20 h-20 bg-yellow-400/3 rounded-full animate-[float_9s_ease-in-out_infinite] blur-md"></div>
-        <div className="absolute bottom-10 left-1/5 w-7 h-7 bg-red-400/7 rounded-full animate-[float_3s_ease-in-out_infinite_1s] blur-sm"></div>
-        <div className="absolute top-2/3 left-1/6 w-11 h-11 bg-indigo-400/6 rounded-full animate-[float_7s_ease-in-out_infinite_3s] blur-sm"></div>
-        <div className="absolute top-1/3 right-1/5 w-9 h-9 bg-teal-400/8 rounded-full animate-[float_5s_ease-in-out_infinite_2s] blur-sm"></div>
-        <div className="absolute bottom-1/5 right-1/3 w-13 h-13 bg-orange-400/5 rounded-full animate-[float_8s_ease-in-out_infinite_4s] blur-md"></div>
-        <div className="absolute top-1/5 left-2/3 w-5 h-5 bg-violet-400/9 rounded-full animate-[float_4s_ease-in-out_infinite_1.5s] blur-sm"></div>
-        <div className="absolute bottom-2/3 right-1/4 w-15 h-15 bg-emerald-400/4 rounded-full animate-[float_10s_ease-in-out_infinite_2s] blur-lg"></div>
-        <div className="absolute top-3/4 left-1/3 w-4 h-4 bg-rose-400/8 rounded-full animate-[float_6s_ease-in-out_infinite_3s] blur-sm"></div>
+    <div className="min-h-screen bg-[#FFE5E5] relative overflow-hidden">
+      {/* Neo-brutalist background elements */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#FF4F4F] rotate-12 transform -translate-y-24 translate-x-24" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#00FF8C] -rotate-6 transform translate-y-24 -translate-x-24" />
+        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-[#FFD23F] rotate-45 transform -translate-x-1/2 -translate-y-1/2" />
       </div>
 
-      {/* Grid pattern overlay */}
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.03%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%221%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
-
-      <div className="relative z-10">
-        {/* Navigation */}
-        <nav className="flex justify-between items-center p-6 md:p-8">
-          <div className="flex items-center space-x-3">
-            <div className="relative">
-              <Shield className="w-8 h-8 text-cyan-400" />
-              <div className="absolute inset-0 bg-cyan-400/20 rounded-full blur-md"></div>
-            </div>
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-              Oper8a
+      {/* Main content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+        <div className="space-y-16">
+          {/* Hero section */}
+          <div className="border-4 border-black bg-white p-8 transform hover:-rotate-1 transition-transform duration-300 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+            <h1 className="text-6xl font-black mb-6 text-black tracking-tight leading-none">
+              Welcome to OPER8A
             </h1>
+            <p className="text-2xl font-bold text-black/80 mb-8 max-w-2xl">
+              Your gateway to decentralized operations and secure network management.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Button 
+                onClick={() => setIsWalletSelectorOpen(true)}
+                className="bg-[#FF4F4F] text-white text-xl px-8 py-6 border-4 border-black transform hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-200"
+              >
+                <Wallet className="mr-2 h-6 w-6" />
+                Connect Wallet
+              </Button>
+              <Button 
+                variant="outline"
+                className="bg-[#00FF8C] text-black text-xl px-8 py-6 border-4 border-black transform hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-200"
+              >
+                <Globe className="mr-2 h-6 w-6" />
+                Explore Networks
+              </Button>
+            </div>
           </div>
-          <Button 
-            onClick={() => setIsWalletSelectorOpen(true)}
-            className="bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-700 hover:to-cyan-700 transition-all duration-300 transform hover:scale-105"
-          >
-            <Wallet className="w-4 h-4 mr-2" />
-            Connect Wallet
-          </Button>
-        </nav>
 
-        {/* Hero Section */}
-        <HeroSection onConnectWallet={() => setIsWalletSelectorOpen(true)} />
-
-        {/* Features Grid */}
-        <FeatureGrid />
-
-        {/* Powered by Solana */}
-        <div className="text-center py-16">
-          <div className="inline-flex items-center space-x-3 bg-white/5 backdrop-blur-sm rounded-full px-6 py-3 border border-white/10">
-            <Globe className="w-5 h-5 text-green-400" />
-            <span className="text-sm font-medium">Powered by Solana Blockchain</span>
+          {/* Feature grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Feature cards */}
+            <div className="border-4 border-black bg-[#FFD23F] p-6 transform rotate-2 hover:rotate-0 transition-transform duration-300 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+              <Shield className="h-12 w-12 mb-4 text-black" />
+              <h3 className="text-2xl font-bold text-black mb-2">Secure Networks</h3>
+              <p className="text-black/80 font-medium">
+                Create and manage secure decentralized networks with confidence.
+              </p>
+            </div>
+            
+            <div className="border-4 border-black bg-[#FF4F4F] p-6 transform -rotate-1 hover:rotate-0 transition-transform duration-300 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+              <Wallet className="h-12 w-12 mb-4 text-white" />
+              <h3 className="text-2xl font-bold text-white mb-2">Easy Integration</h3>
+              <p className="text-white/80 font-medium">
+                Connect your wallet and start managing your decentralized operations instantly.
+              </p>
+            </div>
+            
+            <div className="border-4 border-black bg-[#00FF8C] p-6 transform rotate-1 hover:rotate-0 transition-transform duration-300 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+              <Globe className="h-12 w-12 mb-4 text-black" />
+              <h3 className="text-2xl font-bold text-black mb-2">Global Network</h3>
+              <p className="text-black/80 font-medium">
+                Join a worldwide network of operators building the future of decentralization.
+              </p>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Wallet Selector Modal */}
-      <WalletSelector 
-        isOpen={isWalletSelectorOpen} 
-        onClose={() => setIsWalletSelectorOpen(false)} 
+      {/* Wallet selector modal */}
+      <WalletSelector
+        isOpen={isWalletSelectorOpen}
+        onClose={() => setIsWalletSelectorOpen(false)}
       />
     </div>
   );
