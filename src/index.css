@@ -9,81 +9,107 @@
 
 @layer base {
   :root {
+    /* Neo-Brutalism Color Variables */
+    /* Primary: Bold, saturated colors */
+    --neo-primary-red: #FF4F4F;
+    --neo-primary-orange: #FF8C42;
+    --neo-primary-yellow: #FFD23F;
+    --neo-primary-green: #4ECDC4;
+    --neo-primary-blue: #45B7D1;
+    --neo-primary-purple: #6C5CE7;
+    --neo-primary-pink: #FD79A8;
+    
+    /* Secondary: Raw, unrefined tones */
+    --neo-secondary-concrete: #95A5A6;
+    --neo-secondary-steel: #7F8C8D;
+    --neo-secondary-charcoal: #2D3436;
+    --neo-secondary-cream: #F8F9FA;
+    --neo-secondary-beige: #E8E8E8;
+    
+    /* Accent: High-contrast, vibrant highlights */
+    --neo-accent-lime: #00FF87;
+    --neo-accent-cyan: #00FFFF;
+    --neo-accent-magenta: #FF00FF;
+    --neo-accent-black: #000000;
+    --neo-accent-white: #FFFFFF;
+    
+    /* Background: Mix of white space and bold color blocks */
+    --neo-bg-light: #FFFFFF;
+    --neo-bg-dark: #1A1A1A;
+    --neo-bg-surface: #F5F5F5;
+    --neo-bg-contrast: #000000;
+
+    /* Original theme variables (updated for neo-brutalism) */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 0 0% 0%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 0 0% 0%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 0 0% 0%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 0 69% 67%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 18%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 46%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 196 100% 50%;
+    --accent-foreground: 0 0% 0%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 69% 67%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 0 0% 0%;
+    --input: 0 0% 0%;
+    --ring: 0 0% 0%;
 
-    --radius: 0.5rem;
+    --radius: 0.25rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* Neo-Brutalism Dark Mode (High contrast alternative) */
+    --background: 0 0% 10%;
+    --foreground: 0 0% 100%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 15%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 15%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 0 69% 67%;
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 0 0% 20%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 196 100% 50%;
+    --accent-foreground: 0 0% 0%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 69% 67%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 0 0% 0%;
+    --input: 0 0% 0%;
+    --ring: 0 0% 100%;
+    
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -135,7 +161,82 @@
   background: rgba(255, 255, 255, 0.05);
 }
 
-/* Mobile responsive utilities */
+/* Neo-Brutalism Utility Classes */
+@layer utilities {
+  /* Chunky Shadows */
+  .neo-shadow-sm { box-shadow: 2px 2px 0px #000000; }
+  .neo-shadow { box-shadow: 4px 4px 0px #000000; }
+  .neo-shadow-lg { box-shadow: 6px 6px 0px #000000; }
+  .neo-shadow-xl { box-shadow: 8px 8px 0px #000000; }
+  .neo-shadow-2xl { box-shadow: 12px 12px 0px #000000; }
+  
+  /* Colored Shadows */
+  .neo-shadow-red { box-shadow: 4px 4px 0px var(--neo-primary-red); }
+  .neo-shadow-blue { box-shadow: 4px 4px 0px var(--neo-primary-blue); }
+  .neo-shadow-green { box-shadow: 4px 4px 0px var(--neo-primary-green); }
+  .neo-shadow-yellow { box-shadow: 4px 4px 0px var(--neo-primary-yellow); }
+  .neo-shadow-purple { box-shadow: 4px 4px 0px var(--neo-primary-purple); }
+  
+  /* Chunky Borders */
+  .neo-border { border: 3px solid #000000; }
+  .neo-border-thick { border: 4px solid #000000; }
+  .neo-border-chunky { border: 6px solid #000000; }
+  
+  /* Colored Borders */
+  .neo-border-red { border: 3px solid var(--neo-primary-red); }
+  .neo-border-blue { border: 3px solid var(--neo-primary-blue); }
+  .neo-border-green { border: 3px solid var(--neo-primary-green); }
+  .neo-border-yellow { border: 3px solid var(--neo-primary-yellow); }
+  .neo-border-purple { border: 3px solid var(--neo-primary-purple); }
+  
+  /* Tilted Elements */
+  .neo-tilt-left { transform: rotate(-2deg); }
+  .neo-tilt-right { transform: rotate(2deg); }
+  .neo-tilt-left-md { transform: rotate(-4deg); }
+  .neo-tilt-right-md { transform: rotate(4deg); }
+  .neo-tilt-left-lg { transform: rotate(-6deg); }
+  .neo-tilt-right-lg { transform: rotate(6deg); }
+  
+  /* Bold Typography */
+  .neo-text-bold { font-weight: 700; }
+  .neo-text-extrabold { font-weight: 800; }
+  .neo-text-black { font-weight: 900; }
+  
+  /* Neo-Brutalism Color Classes */
+  .neo-bg-red { background-color: var(--neo-primary-red); }
+  .neo-bg-blue { background-color: var(--neo-primary-blue); }
+  .neo-bg-green { background-color: var(--neo-primary-green); }
+  .neo-bg-yellow { background-color: var(--neo-primary-yellow); }
+  .neo-bg-purple { background-color: var(--neo-primary-purple); }
+  .neo-bg-orange { background-color: var(--neo-primary-orange); }
+  .neo-bg-pink { background-color: var(--neo-primary-pink); }
+  
+  .neo-text-red { color: var(--neo-primary-red); }
+  .neo-text-blue { color: var(--neo-primary-blue); }
+  .neo-text-green { color: var(--neo-primary-green); }
+  .neo-text-yellow { color: var(--neo-primary-yellow); }
+  .neo-text-purple { color: var(--neo-primary-purple); }
+  .neo-text-orange { color: var(--neo-primary-orange); }
+  .neo-text-pink { color: var(--neo-primary-pink); }
+  
+  /* Raw, exposed elements */
+  .neo-raw {
+    border-radius: 0;
+    border: 3px solid #000000;
+    box-shadow: 4px 4px 0px #000000;
+  }
+  
+  /* Hover effects */
+  .neo-hover-lift:hover {
+    transform: translateY(-2px) rotate(-1deg);
+    box-shadow: 6px 6px 0px #000000;
+  }
+  
+  .neo-hover-tilt:hover {
+    transform: rotate(0deg) translate(-4px, -4px);
+    box-shadow: 8px 8px 0px #000000;
+  }
+}
 @media (max-width: 768px) {
   .mobile-grid {
     grid-template-columns: 1fr !important;
