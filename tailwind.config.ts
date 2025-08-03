@@ -5,12 +5,31 @@ export default {
   content: ["./src/index.html", "./src/**/*.{js,jsx,ts,tsx,mdx}", "./public/index.html"],
   theme: {
     extend: {
+      fontFamily: {
+        'space': ['Space Grotesk', 'sans-serif'],
+        'mono': ['JetBrains Mono', 'monospace'],
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
       colors: {
+        'noir-purple': '#1a0b2e',
+        'deep-purple': '#16213e',
+        'electric-purple': '#7209b7',
+        'neon-purple': '#a663cc',
+        'emerald-green': '#00ff88',
+        'dark-emerald': '#00cc6a',
+        'mint-green': '#4ade80',
+        'solana-gradient-start': '#9945ff',
+        'solana-gradient-end': '#14f195',
+        'solana-purple': '#512da8',
+        'solana-cyan': '#00d4ff',
+        'brutal-black': '#0a0a0a',
+        'brutal-white': '#ffffff',
+        'brutal-gray': '#1a1a1a',
+        'brutal-border': '#333333',
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
@@ -63,6 +82,26 @@ export default {
         },
       },
       keyframes: {
+        glitch: {
+          '0%': { transform: 'translate(0)' },
+          '20%': { transform: 'translate(-2px, 2px)' },
+          '40%': { transform: 'translate(-2px, -2px)' },
+          '60%': { transform: 'translate(2px, 2px)' },
+          '80%': { transform: 'translate(2px, -2px)' },
+          '100%': { transform: 'translate(0)' },
+        },
+        'neon-pulse': {
+          '0%, 100%': { 
+            boxShadow: '0 0 5px #00ff88, 0 0 10px #00ff88, 0 0 15px #00ff88'
+          },
+          '50%': { 
+            boxShadow: '0 0 10px #00ff88, 0 0 20px #00ff88, 0 0 30px #00ff88'
+          },
+        },
+        'brutal-bounce': {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
         "accordion-down": {
           from: {
             height: "0",
@@ -81,6 +120,9 @@ export default {
         },
       },
       animation: {
+        glitch: 'glitch 0.3s infinite',
+        'neon-pulse': 'neon-pulse 2s infinite alternate',
+        'brutal-bounce': 'brutal-bounce 2s infinite',
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },

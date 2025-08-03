@@ -1,9 +1,8 @@
-
 import React from 'react';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Wallet, ArrowRight, Zap, Shield } from 'lucide-react';
+import { Wallet, ArrowRight, Zap, Shield, X } from 'lucide-react';
 
 interface WalletSelectorProps {
   isOpen: boolean;
@@ -13,28 +12,32 @@ interface WalletSelectorProps {
 const WalletSelector: React.FC<WalletSelectorProps> = ({ isOpen, onClose }) => {
   const wallets = [
     {
-      name: "Phantom",
+      name: "PHANTOM",
       description: "The most popular Solana wallet",
       icon: "👻",
-      recommended: true
+      recommended: true,
+      status: "VERIFIED"
     },
     {
-      name: "Solflare",
+      name: "SOLFLARE",
       description: "Secure and feature-rich wallet",
       icon: "🔥",
-      recommended: false
+      recommended: false,
+      status: "SECURE"
     },
     {
-      name: "Backpack",
+      name: "BACKPACK",
       description: "Modern wallet for Web3",
       icon: "🎒",
-      recommended: false
+      recommended: false,
+      status: "MODERN"
     },
     {
-      name: "Glow",
+      name: "GLOW",
       description: "Stake and earn rewards",
       icon: "✨",
-      recommended: false
+      recommended: false,
+      status: "REWARDS"
     }
   ];
 
@@ -42,7 +45,7 @@ const WalletSelector: React.FC<WalletSelectorProps> = ({ isOpen, onClose }) => {
     console.log(`Connecting to ${walletName} wallet...`);
     
     try {
-      if (walletName === 'Phantom') {
+      if (walletName === 'PHANTOM') {
         const { walletConnection } = await import('../utils/walletConnection');
         const result = await walletConnection.connectPhantom();
         
@@ -67,61 +70,77 @@ const WalletSelector: React.FC<WalletSelectorProps> = ({ isOpen, onClose }) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md bg-slate-900/95 backdrop-blur-xl border-white/20 text-white">
-        <DialogHeader className="text-center">
-          <div className="flex justify-center mb-4">
-            <div className="relative">
-              <Wallet className="w-12 h-12 text-cyan-400" />
-              <div className="absolute inset-0 bg-cyan-400/20 rounded-full blur-lg"></div>
+      <DialogContent className="sm:max-w-lg bg-black border-4 border-emerald-400 shadow-[8px_8px_0px_0px_#00ff88] text-white p-0 overflow-hidden">
+        {/* Header */}
+        <div className="bg-emerald-400 text-black p-6 border-b-4 border-black relative">
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 w-8 h-8 bg-black border-2 border-emerald-400 shadow-[2px_2px_0px_0px_#000000] flex items-center justify-center hover:shadow-[4px_4px_0px_0px_#000000] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all"
+          >
+            <X className="w-4 h-4 text-emerald-400" />
+          </button>
+          
+          <div className="flex items-center space-x-4">
+            <div className="w-16 h-16 bg-black border-4 border-emerald-400 shadow-[4px_4px_0px_0px_#000000] flex items-center justify-center">
+              <Wallet className="w-8 h-8 text-emerald-400" />
+            </div>
+            <div>
+              <h2 className="text-3xl font-black uppercase tracking-wider">SELECT WALLET</h2>
+              <p className="font-mono text-sm uppercase tracking-wide">CONNECT YOUR SOLANA WALLET</p>
             </div>
           </div>
-          <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-            Select Wallet
-          </DialogTitle>
-          <DialogDescription className="text-gray-300">
-            Connect your Solana wallet to access Operata
-          </DialogDescription>
-        </DialogHeader>
+        </div>
 
-        <div className="space-y-3 mt-6">
+        {/* Content */}
+        <div className="p-6 space-y-4">
           {wallets.map((wallet, index) => (
-            <Card 
+            <div 
               key={index} 
-              className="bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-300 cursor-pointer group"
+              className="brutal-card bg-gray-900 border-2 border-gray-600 shadow-[4px_4px_0px_0px_#333333] hover:shadow-[6px_6px_0px_0px_#333333] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all cursor-pointer group"
               onClick={() => handleWalletConnect(wallet.name)}
             >
-              <CardContent className="p-4">
+              <div className="p-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-4">
-                    <div className="text-2xl">{wallet.icon}</div>
+                    <div className="text-3xl bg-white w-12 h-12 flex items-center justify-center border-2 border-black shadow-[2px_2px_0px_0px_#000000]">
+                      {wallet.icon}
+                    </div>
                     <div>
-                      <div className="flex items-center space-x-2">
-                        <h3 className="font-semibold text-white group-hover:text-cyan-300 transition-colors">
+                      <div className="flex items-center space-x-3">
+                        <h3 className="font-black text-white group-hover:text-emerald-400 transition-colors text-lg uppercase tracking-wider">
                           {wallet.name}
                         </h3>
                         {wallet.recommended && (
-                          <span className="bg-gradient-to-r from-green-500 to-emerald-500 text-white text-xs px-2 py-1 rounded-full flex items-center">
-                            <Shield className="w-3 h-3 mr-1" />
-                            Recommended
-                          </span>
+                          <div className="bg-emerald-400 text-black text-xs px-2 py-1 font-bold uppercase tracking-wider border-2 border-black shadow-[2px_2px_0px_0px_#000000]">
+                            <Shield className="w-3 h-3 inline mr-1" />
+                            RECOMMENDED
+                          </div>
                         )}
+                        <div className="bg-purple-600 text-white text-xs px-2 py-1 font-bold uppercase tracking-wider border-2 border-white shadow-[2px_2px_0px_0px_#ffffff]">
+                          {wallet.status}
+                        </div>
                       </div>
-                      <p className="text-sm text-gray-400">{wallet.description}</p>
+                      <p className="text-sm text-gray-400 font-mono uppercase tracking-wide">{wallet.description}</p>
                     </div>
                   </div>
-                  <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-cyan-400 transition-colors" />
+                  <div className="w-8 h-8 bg-emerald-400 border-2 border-black shadow-[2px_2px_0px_0px_#000000] flex items-center justify-center group-hover:shadow-[4px_4px_0px_0px_#000000] group-hover:translate-x-[-2px] group-hover:translate-y-[-2px] transition-all">
+                    <ArrowRight className="w-4 h-4 text-black" />
+                  </div>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           ))}
         </div>
 
-        <div className="mt-6 p-4 bg-gradient-to-r from-purple-500/10 to-cyan-500/10 rounded-lg border border-purple-500/20">
+        {/* Footer */}
+        <div className="bg-purple-600 border-t-4 border-white p-4">
           <div className="flex items-center space-x-3">
-            <Zap className="w-5 h-5 text-yellow-400" />
+            <div className="w-8 h-8 bg-white border-2 border-black shadow-[2px_2px_0px_0px_#000000] flex items-center justify-center">
+              <Zap className="w-4 h-4 text-purple-600" />
+            </div>
             <div>
-              <p className="text-sm font-medium text-white">Powered by Solana</p>
-              <p className="text-xs text-gray-400">Fast, secure, and low-cost transactions</p>
+              <p className="text-sm font-black text-white uppercase tracking-wider">POWERED BY SOLANA</p>
+              <p className="text-xs text-purple-200 font-mono uppercase tracking-wide">FAST, SECURE, LOW-COST TRANSACTIONS</p>
             </div>
           </div>
         </div>

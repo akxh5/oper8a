@@ -2,96 +2,92 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-20px); }
 }
 
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes neon-pulse {
+  0%, 100% { 
+    box-shadow: 0 0 5px #00ff88, 0 0 10px #00ff88, 0 0 15px #00ff88;
+  }
+  50% { 
+    box-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88, 0 0 30px #00ff88;
+  }
+}
+
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Neo-Brutalism Color Palette */
+    --noir-purple: #1a0b2e;
+    --deep-purple: #16213e;
+    --electric-purple: #7209b7;
+    --neon-purple: #a663cc;
+    
+    --emerald-green: #00ff88;
+    --dark-emerald: #00cc6a;
+    --mint-green: #4ade80;
+    
+    --solana-gradient-start: #9945ff;
+    --solana-gradient-end: #14f195;
+    --solana-purple: #512da8;
+    --solana-cyan: #00d4ff;
+    
+    --brutal-black: #0a0a0a;
+    --brutal-white: #ffffff;
+    --brutal-gray: #1a1a1a;
+    --brutal-border: #333333;
+    
+    /* Updated CSS Variables */
+    --background: 10 10% 4%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 10 10% 6%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 10 10% 6%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 142 76% 36%;
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 271 81% 56%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 10 10% 15%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 142 100% 55%;
+    --accent-foreground: 0 0% 0%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 0 0% 20%;
+    --input: 0 0% 15%;
+    --ring: 142 100% 55%;
 
-    --radius: 0.5rem;
+    --radius: 0rem;
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 10 10% 4%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 142 76% 36%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 10 10% 15%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 142 100% 55%;
   }
 }
 
@@ -102,37 +98,122 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Space Grotesk', sans-serif;
+    background: linear-gradient(135deg, var(--noir-purple) 0%, var(--brutal-black) 50%, var(--deep-purple) 100%);
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+  }
+
+  code, pre {
+    font-family: 'JetBrains Mono', monospace;
   }
 }
 
-/* Custom Scrollbar Styles */
+/* Neo-Brutalism Components */
+@layer components {
+  .brutal-card {
+    @apply bg-black border-4 border-white shadow-[8px_8px_0px_0px_#00ff88];
+    transform: translateZ(0);
+    transition: all 0.2s ease;
+  }
+
+  .brutal-card:hover {
+    @apply shadow-[12px_12px_0px_0px_#00ff88];
+    transform: translate(-2px, -2px);
+  }
+
+  .brutal-button {
+    @apply bg-emerald-400 text-black font-bold border-4 border-black shadow-[4px_4px_0px_0px_#000000];
+    transition: all 0.1s ease;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .brutal-button:hover {
+    @apply shadow-[6px_6px_0px_0px_#000000];
+    transform: translate(-2px, -2px);
+  }
+
+  .brutal-button:active {
+    @apply shadow-[2px_2px_0px_0px_#000000];
+    transform: translate(2px, 2px);
+  }
+
+  .brutal-button-secondary {
+    @apply bg-purple-600 text-white font-bold border-4 border-white shadow-[4px_4px_0px_0px_#ffffff];
+    transition: all 0.1s ease;
+  }
+
+  .brutal-button-secondary:hover {
+    @apply shadow-[6px_6px_0px_0px_#ffffff];
+    transform: translate(-2px, -2px);
+  }
+
+  .brutal-input {
+    @apply bg-black text-emerald-400 border-4 border-emerald-400 font-mono;
+    box-shadow: inset 4px 4px 0px 0px rgba(0, 255, 136, 0.2);
+  }
+
+  .brutal-input:focus {
+    @apply outline-none ring-0 border-emerald-300;
+    box-shadow: inset 4px 4px 0px 0px rgba(0, 255, 136, 0.4);
+  }
+
+  .neon-text {
+    color: var(--emerald-green);
+    text-shadow: 
+      0 0 5px var(--emerald-green),
+      0 0 10px var(--emerald-green),
+      0 0 15px var(--emerald-green);
+  }
+
+  .glitch-text {
+    animation: glitch 0.3s infinite;
+  }
+
+  .solana-gradient {
+    background: linear-gradient(135deg, var(--solana-gradient-start) 0%, var(--solana-gradient-end) 100%);
+  }
+
+  .brutal-border {
+    border: 4px solid;
+    border-image: linear-gradient(45deg, var(--emerald-green), var(--electric-purple)) 1;
+  }
+}
+
+/* Custom Scrollbar Styles - Neo-Brutalism */
 .custom-scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(99, 191, 255, 0.3) rgba(255, 255, 255, 0.05);
+  scrollbar-width: thick;
+  scrollbar-color: var(--emerald-green) var(--brutal-black);
 }
 
 .custom-scrollbar::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 16px;
+  height: 16px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 4px;
+  background: var(--brutal-black);
+  border: 2px solid var(--emerald-green);
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(99, 191, 255, 0.4);
-  border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--emerald-green);
+  border: 2px solid var(--brutal-black);
+  box-shadow: 2px 2px 0px 0px var(--brutal-black);
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(99, 191, 255, 0.6);
+  background: var(--dark-emerald);
+  box-shadow: 4px 4px 0px 0px var(--brutal-black);
 }
 
 .custom-scrollbar::-webkit-scrollbar-corner {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--brutal-black);
+  border: 2px solid var(--emerald-green);
 }
 
 /* Mobile responsive utilities */
@@ -162,4 +243,39 @@
     padding-top: 1rem !important;
     padding-bottom: 1rem !important;
   }
+
+  .brutal-card {
+    @apply shadow-[4px_4px_0px_0px_#00ff88];
+  }
+
+  .brutal-card:hover {
+    @apply shadow-[6px_6px_0px_0px_#00ff88];
+  }
+}
+
+/* Animations */
+@keyframes brutal-bounce {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.brutal-bounce {
+  animation: brutal-bounce 2s infinite;
+}
+
+/* Grid Pattern Background */
+.brutal-grid {
+  background-image: 
+    linear-gradient(rgba(0, 255, 136, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 136, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Neon Effects */
+.neon-border {
+  border: 2px solid var(--emerald-green);
+  box-shadow: 
+    0 0 5px var(--emerald-green),
+    inset 0 0 5px var(--emerald-green);
+  animation: neon-pulse 2s infinite alternate;
 }
