@@ -39,13 +39,13 @@ const FileRecords: React.FC<FileRecordsProps> = ({ refreshTrigger, userWallet, m
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'verified':
-        return <CheckCircle className="w-4 h-4 text-green-400" />;
+        return <CheckCircle className="w-4 h-4 text-mint-green" />;
       case 'duplicate':
-        return <AlertTriangle className="w-4 h-4 text-yellow-400" />;
+        return <AlertTriangle className="w-4 h-4 text-warm-peach" />;
       case 'processing':
-        return <Clock className="w-4 h-4 text-blue-400" />;
+        return <Clock className="w-4 h-4 text-sky-blue" />;
       default:
-        return <File className="w-4 h-4 text-gray-400" />;
+        return <File className="w-4 h-4 text-charcoal" />;
     }
   };
 
@@ -82,24 +82,27 @@ const FileRecords: React.FC<FileRecordsProps> = ({ refreshTrigger, userWallet, m
 
   if (isLoading) {
     return (
-      <div className="text-center py-12">
-        <RefreshCw className="w-8 h-8 text-cyan-400 mx-auto mb-4 animate-spin" />
-        <p className="text-gray-300">Loading files from blockchain...</p>
-        <p className="text-gray-300">Loading files from blockchain...</p>
+      <div className="brutal-text-block text-center py-12">
+        <div className="brutal-icon-box w-12 h-12 mx-auto mb-4 flex items-center justify-center">
+          <RefreshCw className="w-6 h-6 text-charcoal animate-spin" />
+        </div>
+        <p className="brutal-body">Loading files from blockchain...</p>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="text-center py-12">
-        <AlertTriangle className="w-12 h-12 text-red-400 mx-auto mb-4" />
-        <p className="text-red-400 mb-2">Error loading files</p>
-        <p className="text-sm text-gray-400 mb-4">{error}</p>
+      <div className="brutal-alert text-center py-12">
+        <div className="brutal-icon-box w-12 h-12 mx-auto mb-4 flex items-center justify-center">
+          <AlertTriangle className="w-6 h-6 text-charcoal" />
+        </div>
+        <p className="brutal-subheading mb-2">Error loading files</p>
+        <p className="brutal-body text-sm mb-4">{error}</p>
         <Button 
           onClick={loadFiles}
           variant="outline"
-          className="border-cyan-400/30 bg-cyan-500/10 text-cyan-300 hover:bg-cyan-500/20 hover:text-cyan-200 hover:border-cyan-400/50"
+          className="brutal-button-coral"
         >
           <RefreshCw className="w-4 h-4 mr-2" />
           Try Again
@@ -121,10 +124,12 @@ const FileRecords: React.FC<FileRecordsProps> = ({ refreshTrigger, userWallet, m
 
   if (filteredFiles.length === 0) {
     return (
-      <div className="text-center py-12">
-        <File className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-        <p className="text-gray-300 mb-2">No files found</p>
-        <p className="text-sm text-gray-400">Try a different search or upload a file</p>
+      <div className="brutal-text-block text-center py-12">
+        <div className="brutal-icon-box w-12 h-12 mx-auto mb-4 flex items-center justify-center">
+          <File className="w-6 h-6 text-charcoal" />
+        </div>
+        <p className="brutal-subheading mb-2">No files found</p>
+        <p className="brutal-body text-sm">Try a different search or upload a file</p>
       </div>
     );
   }
@@ -134,28 +139,28 @@ const FileRecords: React.FC<FileRecordsProps> = ({ refreshTrigger, userWallet, m
       {(maxFiles ? filteredFiles.slice(0, maxFiles) : filteredFiles).map((file) => (
         <div
           key={file.id}
-          className="bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 p-3 sm:p-4 hover:bg-white/10 transition-colors"
+          className="brutal-list-item p-3 sm:p-4"
         >
           <div className="flex flex-col sm:flex-row items-start justify-between gap-3">
             <div className="flex-1 min-w-0 w-full">
               <div className="flex items-center space-x-2 mb-2">
                 {getStatusIcon(file.status)}
-                <h3 className="text-white font-medium truncate text-sm sm:text-base">{file.name}</h3>
-                <Badge className={`${getStatusColor(file.status)} text-xs`}>
+                <h3 className="brutal-subheading truncate text-sm sm:text-base">{file.name}</h3>
+                <div className={`brutal-badge text-xs`}>
                   {file.status}
-                </Badge>
+                </div>
               </div>
-              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-1 sm:gap-x-6 sm:gap-y-1 text-xs sm:text-sm text-gray-400">
-                <span>Size: <span className="font-mono text-white">{formatFileSize(file.size)}</span></span>
-                <span>Date: <span className="font-mono text-white">{formatDate(file.uploadDate)}</span></span>
-                <span className="break-all sm:break-normal">Hash: <span className="font-mono text-white truncate max-w-[120px] sm:max-w-[180px] inline-block">{file.hash}</span></span>
+              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-1 sm:gap-x-6 sm:gap-y-1 text-xs sm:text-sm">
+                <span className="brutal-body">Size: <span className="brutal-mono text-charcoal">{formatFileSize(file.size)}</span></span>
+                <span className="brutal-body">Date: <span className="brutal-mono text-charcoal">{formatDate(file.uploadDate)}</span></span>
+                <span className="brutal-body break-all sm:break-normal">Hash: <span className="brutal-mono text-charcoal truncate max-w-[120px] sm:max-w-[180px] inline-block">{file.hash}</span></span>
               </div>
             </div>
             <div className="flex-shrink-0 w-full sm:w-auto sm:ml-4 flex items-center justify-end">
               <Button
                 size="sm"
                 variant="outline"
-                className="border-cyan-400/40 bg-cyan-500/15 text-cyan-300 hover:bg-cyan-500/25 hover:text-cyan-200 hover:border-cyan-400/60 w-full sm:w-auto"
+                className="brutal-button-blue w-full sm:w-auto"
                 onClick={() => window.open(file.ipfsUrl, '_blank')}
               >
                 <ExternalLink className="w-3 sm:w-4 h-3 sm:h-4 mr-1 sm:mr-2" />

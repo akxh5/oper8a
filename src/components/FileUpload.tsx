@@ -135,10 +135,10 @@ const FileUpload: React.FC<FileUploadProps> = ({
 
   if (!hasApiKeys) {
     return (
-      <div className="text-center py-8 sm:py-12 border-2 border-dashed border-gray-600 rounded-lg bg-gray-800/20">
-        <AlertCircle className="w-10 sm:w-12 h-10 sm:h-12 text-yellow-400 mx-auto mb-4" />
-        <p className="text-gray-300 mb-2 text-sm sm:text-base">Configure Pinata API keys to enable IPFS storage</p>
-        <p className="text-xs sm:text-sm text-gray-400">Upload your API keys first to start uploading files</p>
+      <div className="brutal-alert text-center py-8 sm:py-12">
+        <AlertCircle className="w-10 sm:w-12 h-10 sm:h-12 text-charcoal mx-auto mb-4" />
+        <p className="brutal-body mb-2 text-sm sm:text-base">Configure Pinata API keys to enable IPFS storage</p>
+        <p className="brutal-mono text-xs sm:text-sm">Upload your API keys first to start uploading files</p>
       </div>
     );
   }
@@ -147,14 +147,14 @@ const FileUpload: React.FC<FileUploadProps> = ({
     <div className="space-y-4">
       {/* Upload Context Info */}
       {selectedNetwork && (
-        <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-2 sm:p-3">
-          <div className="flex items-center space-x-2 text-blue-400">
+        <div className="brutal-status-info p-2 sm:p-3">
+          <div className="flex items-center space-x-2 text-charcoal">
             <Users className="w-3 sm:w-4 h-3 sm:h-4" />
-            <span className="text-xs sm:text-sm font-medium">
+            <span className="brutal-mono text-xs sm:text-sm">
               Uploading to network: {selectedNetwork.name}
             </span>
           </div>
-          <p className="text-xs text-blue-300 mt-1">
+          <p className="brutal-body text-xs mt-1">
             Files will be tracked on Solana blockchain with duplicate detection
           </p>
         </div>
@@ -165,20 +165,22 @@ const FileUpload: React.FC<FileUploadProps> = ({
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
         className={`
-          border-2 border-dashed rounded-lg p-4 sm:p-8 text-center transition-all duration-300
+          brutal-form text-center transition-all duration-300
           ${isDragOver 
-            ? 'border-cyan-400 bg-cyan-400/10' 
-            : 'border-white/20 hover:border-white/40'
+            ? 'brutal-shadow-mint' 
+            : 'brutal-shadow-blue hover:brutal-shadow-coral'
           }
           ${hasApiKeys ? 'cursor-pointer' : 'cursor-not-allowed opacity-50'}
         `}
       >
         {selectedFile ? (
           <div className="space-y-3 sm:space-y-4">
-            <File className="w-10 sm:w-12 h-10 sm:h-12 text-green-400 mx-auto" />
+            <div className="brutal-icon-box w-12 h-12 mx-auto flex items-center justify-center">
+              <File className="w-6 h-6 text-charcoal" />
+            </div>
             <div>
-              <p className="text-white font-medium text-sm sm:text-base break-all px-2">{selectedFile.name}</p>
-              <p className="text-gray-400 text-xs sm:text-sm">
+              <p className="brutal-subheading text-sm sm:text-base break-all px-2">{selectedFile.name}</p>
+              <p className="brutal-mono text-xs sm:text-sm">
                 {(selectedFile.size / 1024 / 1024).toFixed(2)} MB
               </p>
             </div>
@@ -186,7 +188,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
               <Button
                 onClick={handleUpload}
                 disabled={isUploading}
-                className="bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white font-medium text-sm"
+                className="brutal-button text-sm"
               >
                 <Upload className="w-3 sm:w-4 h-3 sm:h-4 mr-2" />
                 {isUploading ? 'Uploading...' : 'Upload to Network'}
@@ -194,7 +196,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
               <Button
                 onClick={() => setSelectedFile(null)}
                 variant="outline"
-                className="border-gray-300 bg-white text-gray-700 hover:bg-gray-50 text-sm"
+                className="brutal-button-secondary text-sm"
                 disabled={isUploading}
               >
                 Cancel
@@ -203,10 +205,12 @@ const FileUpload: React.FC<FileUploadProps> = ({
           </div>
         ) : (
           <div className="space-y-3 sm:space-y-4">
-            <Upload className="w-10 sm:w-12 h-10 sm:h-12 text-gray-400 mx-auto" />
+            <div className="brutal-icon-box w-12 h-12 mx-auto flex items-center justify-center">
+              <Upload className="w-6 h-6 text-charcoal" />
+            </div>
             <div>
-              <p className="text-white mb-2 text-sm sm:text-base">Drag & drop your file here</p>
-              <p className="text-gray-400 text-xs sm:text-sm">or click to browse your files</p>
+              <p className="brutal-subheading mb-2 text-sm sm:text-base">Drag & drop your file here</p>
+              <p className="brutal-mono text-xs sm:text-sm">or click to browse your files</p>
             </div>
             <input
               type="file"
@@ -223,7 +227,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
             <label htmlFor="file-upload">
               <Button
                 variant="outline"
-                className="border-gray-300 bg-white text-gray-700 hover:bg-gray-50 cursor-pointer text-sm"
+                className="brutal-button-secondary cursor-pointer text-sm"
                 disabled={!hasApiKeys}
                 asChild
               >

@@ -146,10 +146,10 @@ const Dashboard = () => {
   };
 
   const getEloColor = (elo: number) => {
-    if (elo >= 2750) return 'text-emerald-400';
-    if (elo >= 2650) return 'text-purple-400';
-    if (elo >= 2600) return 'text-yellow-400';
-    return 'text-red-500';
+    if (elo >= 2750) return 'text-mint-green';
+    if (elo >= 2650) return 'text-sky-blue';
+    if (elo >= 2600) return 'text-warm-peach';
+    return 'text-soft-coral';
   };
 
   const getEloRank = (elo: number) => {
@@ -160,44 +160,44 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#0a0a0a] to-[#16213e] text-white relative">
-      {/* Neo-Brutalism Grid Background */}
-      <div className="absolute inset-0 brutal-grid opacity-20"></div>
+    <div className="brutal-layout">
+      {/* Geometric Background Pattern */}
+      <div className="absolute inset-0 brutal-bg-pattern"></div>
       
       {/* Header */}
-      <div className="border-b-4 border-emerald-400 bg-black backdrop-blur-sm relative z-10">
+      <div className="brutal-header relative z-10">
         <div className="container mx-auto px-4 sm:px-6 py-4">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div className="flex items-center space-x-3">
               <div className="relative">
-                <div className="w-10 sm:w-12 h-10 sm:h-12 bg-emerald-400 border-4 border-black shadow-[4px_4px_0px_0px_#000000] flex items-center justify-center">
-                  <Shield className="w-5 sm:w-6 h-5 sm:h-6 text-black" />
+                <div className="brutal-icon-box w-10 sm:w-12 h-10 sm:h-12 flex items-center justify-center">
+                  <Shield className="w-5 sm:w-6 h-5 sm:h-6 text-charcoal" />
                 </div>
               </div>
               <div>
-                <h1 className="text-xl sm:text-3xl font-black neon-text font-mono tracking-wider uppercase">
+                <h1 className="brutal-heading text-xl sm:text-3xl">
                   OPER8A DASHBOARD
                 </h1>
-                <p className="text-xs text-emerald-400 font-mono uppercase tracking-widest">
+                <p className="brutal-mono text-xs text-mint-green">
                   BLOCKCHAIN VERIFIED
                 </p>
               </div>
             </div>
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full sm:w-auto">
               {/* ELO Display */}
-              <div className="brutal-card bg-black border-4 border-emerald-400 shadow-[4px_4px_0px_0px_#00ff88] px-3 sm:px-4 py-2">
+              <div className="brutal-card px-3 sm:px-4 py-2">
                 <div className="flex items-center space-x-2 sm:space-x-3">
                   <div className="text-center">
-                    <div className={`text-sm sm:text-xl font-black ${getEloColor(userElo)} font-mono`}>
+                    <div className={`brutal-heading text-sm sm:text-xl ${getEloColor(userElo)}`}>
                       {userElo}
                     </div>
-                    <div className="text-xs text-emerald-400 font-mono uppercase tracking-wider">ELO</div>
+                    <div className="brutal-mono text-xs text-mint-green">ELO</div>
                   </div>
                   <div className="text-center">
-                    <div className={`text-xs sm:text-sm font-black ${getEloColor(userElo)} font-mono uppercase`}>
+                    <div className={`brutal-heading text-xs sm:text-sm ${getEloColor(userElo)}`}>
                       {getEloRank(userElo)}
                     </div>
-                    <div className="text-xs text-emerald-400 font-mono uppercase tracking-wider">RANK</div>
+                    <div className="brutal-mono text-xs text-mint-green">RANK</div>
                   </div>
                 </div>
               </div>
@@ -205,29 +205,29 @@ const Dashboard = () => {
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 text-sm text-gray-300 w-full sm:w-auto">
                 <Dialog open={settingsOpen} onOpenChange={setSettingsOpen}>
                   <DialogTrigger asChild>
-                    <Button className="brutal-button-secondary p-2 w-10 h-10" aria-label="Settings">
+                    <Button className="brutal-button-blue p-2 w-10 h-10" aria-label="Settings">
                       <SettingsIcon className="w-4 sm:w-5 h-4 sm:h-5" />
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="max-w-lg w-full bg-black border-4 border-emerald-400 shadow-[8px_8px_0px_0px_#00ff88] text-white">
+                  <DialogContent className="max-w-lg w-full brutal-modal">
                     <DialogHeader>
-                      <DialogTitle className="flex items-center space-x-3 text-2xl font-black uppercase tracking-wider">
-                        <div className="w-8 h-8 bg-emerald-400 border-2 border-black shadow-[2px_2px_0px_0px_#000000] flex items-center justify-center">
-                          <SettingsIcon className="w-4 h-4 text-black" />
+                      <DialogTitle className="flex items-center space-x-3 brutal-heading text-2xl">
+                        <div className="brutal-icon-box w-8 h-8 flex items-center justify-center">
+                          <SettingsIcon className="w-4 h-4 text-charcoal" />
                         </div>
                         <span>IPFS CONFIGURATION</span>
                       </DialogTitle>
                     </DialogHeader>
                     {/* IPFS Configuration Panel */}
-                    <Card className="brutal-card bg-gray-900 border-2 border-gray-600 shadow-[4px_4px_0px_0px_#333333]">
+                    <Card className="brutal-form">
                       <CardHeader>
                         <div className="flex items-center space-x-3">
-                          <div className="w-8 h-8 bg-purple-600 border-2 border-white shadow-[2px_2px_0px_0px_#ffffff] flex items-center justify-center">
-                            <Key className="w-4 h-4 text-white" />
+                          <div className="brutal-icon-box w-8 h-8 flex items-center justify-center">
+                            <Key className="w-4 h-4 text-charcoal" />
                           </div>
                           <div>
-                            <CardTitle className="text-white font-black uppercase tracking-wider">PINATA API KEYS</CardTitle>
-                            <CardDescription className="text-gray-300 font-mono text-xs uppercase tracking-wide">
+                            <CardTitle className="brutal-heading">PINATA API KEYS</CardTitle>
+                            <CardDescription className="brutal-mono text-xs">
                               {hasApiKeys ? 'UPDATE YOUR PINATA CREDENTIALS' : 'CONFIGURE PINATA IPFS STORAGE'}
                             </CardDescription>
                           </div>
@@ -235,7 +235,7 @@ const Dashboard = () => {
                       </CardHeader>
                       <CardContent className="space-y-4">
                         <div className="space-y-2">
-                          <Label htmlFor="api-key" className="text-white font-bold uppercase tracking-wider">API KEY</Label>
+                          <Label htmlFor="api-key" className="brutal-label">API KEY</Label>
                           <Input
                             id="api-key"
                             type="password"
@@ -246,7 +246,7 @@ const Dashboard = () => {
                           />
                         </div>
                         <div className="space-y-2">
-                          <Label htmlFor="secret-key" className="text-white font-bold uppercase tracking-wider">SECRET KEY</Label>
+                          <Label htmlFor="secret-key" className="brutal-label">SECRET KEY</Label>
                           <Input
                             id="secret-key"
                             type="password"
@@ -259,11 +259,11 @@ const Dashboard = () => {
                         <Button 
                           onClick={handleSaveApiKeys}
                           disabled={isLoading || !pinataApiKey || !pinataSecretKey}
-                          className="w-full brutal-button font-black uppercase tracking-wider"
+                          className="w-full brutal-button"
                         >
                           {isLoading ? (
                             <>
-                              <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
+                              <RefreshCw className="w-4 h-4 mr-2" />
                               TESTING CONNECTION...
                             </>
                           ) : hasApiKeys ? (
@@ -279,22 +279,22 @@ const Dashboard = () => {
                 <span className="hidden sm:inline">Connected:</span>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button className="brutal-button-secondary px-2 sm:px-3 py-1 h-auto text-xs sm:text-sm font-bold uppercase tracking-wider">
+                    <Button className="brutal-button-lavender px-2 sm:px-3 py-1 h-auto text-xs sm:text-sm">
                       <Wallet className="w-3 sm:w-4 h-3 sm:h-4 mr-1 sm:mr-2" />
                       <span className="truncate max-w-[100px] sm:max-w-none">{walletAddress}</span>
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent className="bg-black border-2 border-emerald-400 shadow-[4px_4px_0px_0px_#00ff88] text-white">
-                    <DropdownMenuItem onClick={handleCopyAddress} className="hover:bg-emerald-400/20 font-mono uppercase tracking-wide">
+                  <DropdownMenuContent className="brutal-card">
+                    <DropdownMenuItem onClick={handleCopyAddress} className="brutal-mono hover:bg-soft-gray">
                       <Copy className="w-4 h-4 mr-2" />
                       COPY ADDRESS
                     </DropdownMenuItem>
-                    <DropdownMenuSeparator className="bg-emerald-400" />
-                    <DropdownMenuItem onClick={handleChangeWallet} className="hover:bg-emerald-400/20 font-mono uppercase tracking-wide">
+                    <DropdownMenuSeparator className="brutal-border" />
+                    <DropdownMenuItem onClick={handleChangeWallet} className="brutal-mono hover:bg-soft-gray">
                       <Wallet className="w-4 h-4 mr-2" />
                       CHANGE WALLET
                     </DropdownMenuItem>
-                    <DropdownMenuItem onClick={handleDisconnect} className="hover:bg-red-400/20 text-red-400 font-mono uppercase tracking-wide">
+                    <DropdownMenuItem onClick={handleDisconnect} className="brutal-mono hover:bg-soft-coral text-charcoal">
                       <LogOut className="w-4 h-4 mr-2" />
                       DISCONNECT
                     </DropdownMenuItem>
@@ -310,15 +310,15 @@ const Dashboard = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
           {/* Left: Network Manager, Upload File, Network Members (stacked, ~5/12 width) */}
           <div className="lg:col-span-5 flex flex-col gap-4 sm:gap-6">
-            <Card className="brutal-card bg-black border-4 border-emerald-400 shadow-[6px_6px_0px_0px_#00ff88]">
+            <Card className="brutal-card">
               <CardHeader>
                 <div className="flex items-center space-x-3">
-                  <div className="w-8 h-8 bg-purple-600 border-2 border-white shadow-[2px_2px_0px_0px_#ffffff] flex items-center justify-center">
-                    <Database className="w-4 h-4 text-white" />
+                  <div className="brutal-icon-box w-8 h-8 flex items-center justify-center">
+                    <Database className="w-4 h-4 text-charcoal" />
                   </div>
                   <div>
-                    <CardTitle className="text-white font-black uppercase tracking-wider">NETWORK</CardTitle>
-                    <CardDescription className="text-gray-300 font-mono text-xs uppercase tracking-wide">
+                    <CardTitle className="brutal-heading">NETWORK</CardTitle>
+                    <CardDescription className="brutal-mono text-xs">
                       MANAGE AND SELECT YOUR NETWORK
                     </CardDescription>
                   </div>
@@ -334,17 +334,17 @@ const Dashboard = () => {
                 />
               </CardContent>
             </Card>
-            <Card className="brutal-card bg-black border-4 border-emerald-400 shadow-[6px_6px_0px_0px_#00ff88]">
+            <Card className="brutal-card-peach">
               <CardHeader>
                 <div className="flex items-center space-x-3">
-                  <div className="w-8 h-8 bg-emerald-400 border-2 border-black shadow-[2px_2px_0px_0px_#000000] flex items-center justify-center">
-                    <Upload className="w-4 h-4 text-black" />
+                  <div className="brutal-icon-box w-8 h-8 flex items-center justify-center">
+                    <Upload className="w-4 h-4 text-charcoal" />
                   </div>
                   <div>
-                    <CardTitle className="text-white font-black uppercase tracking-wider">UPLOAD FILE</CardTitle>
-                    <CardDescription className="text-gray-300 font-mono text-xs uppercase tracking-wide">
+                    <CardTitle className="brutal-heading">UPLOAD FILE</CardTitle>
+                    <CardDescription className="brutal-mono text-xs">
                       {selectedNetwork 
-                        ? `UPLOAD FILES TO ${selectedNetwork.name.toUpperCase()} NETWORK WITH BLOCKCHAIN TRACKING`
+                        ? `UPLOAD TO ${selectedNetwork.name.toUpperCase()} NETWORK`
                         : 'UPLOAD FILES TO YOUR PERSONAL STORAGE'
                       }
                     </CardDescription>
@@ -363,22 +363,22 @@ const Dashboard = () => {
             </Card>
             {/* Network Members */}
             {selectedNetwork && (
-              <Card className="brutal-card bg-black border-4 border-purple-600 shadow-[6px_6px_0px_0px_#7209b7]">
+              <Card className="brutal-card-lavender">
                 <CardHeader>
                   <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 bg-purple-600 border-2 border-white shadow-[2px_2px_0px_0px_#ffffff] flex items-center justify-center">
-                      <Database className="w-4 h-4 text-white" />
+                    <div className="brutal-icon-box w-8 h-8 flex items-center justify-center">
+                      <Database className="w-4 h-4 text-charcoal" />
                     </div>
                     <div>
-                      <CardTitle className="text-white text-base sm:text-lg font-black uppercase tracking-wider">NETWORK MEMBERS</CardTitle>
-                      <CardDescription className="text-gray-300 text-sm font-mono uppercase tracking-wide">
+                      <CardTitle className="brutal-heading text-base sm:text-lg">NETWORK MEMBERS</CardTitle>
+                      <CardDescription className="brutal-mono text-sm">
                         MEMBERS IN THE SELECTED NETWORK
                       </CardDescription>
                     </div>
                   </div>
                 </CardHeader>
                 <CardContent className="px-2 sm:px-4">
-                  <div className="max-h-[300px] overflow-y-auto custom-scrollbar">
+                  <div className="max-h-[300px] overflow-y-auto brutal-scrollbar">
                     <NetworkMembers 
                       network={selectedNetwork} 
                       userWallet={fullWalletAddress}
@@ -403,16 +403,16 @@ const Dashboard = () => {
 
           {/* Right: Personal Files, Network Files (stacked, ~7/12 width) */}
           <div className="lg:col-span-7 flex flex-col gap-4 sm:gap-6">
-            <Card className="brutal-card bg-black border-4 border-emerald-400 shadow-[6px_6px_0px_0px_#00ff88]">
+            <Card className="brutal-card-blue">
               <CardHeader>
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                   <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 bg-emerald-400 border-2 border-black shadow-[2px_2px_0px_0px_#000000] flex items-center justify-center">
-                      <Database className="w-4 h-4 text-black" />
+                    <div className="brutal-icon-box w-8 h-8 flex items-center justify-center">
+                      <Database className="w-4 h-4 text-charcoal" />
                     </div>
                     <div>
-                      <CardTitle className="text-white text-base sm:text-lg font-black uppercase tracking-wider">PERSONAL FILES</CardTitle>
-                      <CardDescription className="text-gray-300 text-sm font-mono uppercase tracking-wide">
+                      <CardTitle className="brutal-heading text-base sm:text-lg">PERSONAL FILES</CardTitle>
+                      <CardDescription className="brutal-mono text-sm">
                         FILES STORED ON IPFS VIA PINATA WITH BLOCKCHAIN METADATA
                       </CardDescription>
                     </div>
@@ -430,7 +430,7 @@ const Dashboard = () => {
                       onClick={handleRefreshFiles}
                       variant="outline" 
                       size="sm"
-                      className="brutal-button-secondary whitespace-nowrap font-bold uppercase tracking-wider"
+                      className="brutal-button-secondary whitespace-nowrap"
                     >
                       <RefreshCw className="w-4 h-4 mr-1 sm:mr-2" />
                       <span className="hidden sm:inline">REFRESH</span>
@@ -439,7 +439,7 @@ const Dashboard = () => {
                 </div>
               </CardHeader>
               <CardContent className="pt-2 pb-2 px-2 sm:px-4">
-                <div className="max-h-[400px] sm:max-h-[560px] min-h-[300px] sm:min-h-[400px] overflow-y-auto custom-scrollbar">
+                <div className="max-h-[400px] sm:max-h-[560px] min-h-[300px] sm:min-h-[400px] overflow-y-auto brutal-scrollbar">
                   <FileRecords 
                     refreshTrigger={refreshTrigger} 
                     userWallet={fullWalletAddress}
@@ -449,16 +449,16 @@ const Dashboard = () => {
                 </div>
               </CardContent>
             </Card>
-            <Card className="brutal-card bg-black border-4 border-purple-600 shadow-[6px_6px_0px_0px_#7209b7]">
+            <Card className="brutal-card-coral">
               <CardHeader>
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                   <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 bg-purple-600 border-2 border-white shadow-[2px_2px_0px_0px_#ffffff] flex items-center justify-center">
-                      <Database className="w-4 h-4 text-white" />
+                    <div className="brutal-icon-box w-8 h-8 flex items-center justify-center">
+                      <Database className="w-4 h-4 text-charcoal" />
                     </div>
                     <div>
-                      <CardTitle className="text-white text-base sm:text-lg font-black uppercase tracking-wider">NETWORK FILES</CardTitle>
-                      <CardDescription className="text-gray-300 text-sm font-mono uppercase tracking-wide">
+                      <CardTitle className="brutal-heading text-base sm:text-lg">NETWORK FILES</CardTitle>
+                      <CardDescription className="brutal-mono text-sm">
                         FILES SHARED IN THE SELECTED NETWORK
                       </CardDescription>
                     </div>
@@ -476,7 +476,7 @@ const Dashboard = () => {
                       onClick={handleRefreshFiles}
                       variant="outline" 
                       size="sm"
-                      className="brutal-button-secondary whitespace-nowrap font-bold uppercase tracking-wider"
+                      className="brutal-button-secondary whitespace-nowrap"
                     >
                       <RefreshCw className="w-4 h-4 mr-1 sm:mr-2" />
                       <span className="hidden sm:inline">REFRESH</span>
@@ -485,7 +485,7 @@ const Dashboard = () => {
                 </div>
               </CardHeader>
               <CardContent className="pt-2 pb-2 px-2 sm:px-4">
-                <div className="max-h-[400px] sm:max-h-[560px] min-h-[300px] sm:min-h-[400px] overflow-y-auto custom-scrollbar">
+                <div className="max-h-[400px] sm:max-h-[560px] min-h-[300px] sm:min-h-[400px] overflow-y-auto brutal-scrollbar">
                   {selectedNetwork ? (
                     <NetworkFilesList 
                       network={selectedNetwork} 
@@ -494,7 +494,9 @@ const Dashboard = () => {
                       search={networkFilesSearch}
                     />
                   ) : (
-                    <div className="text-gray-400 p-4 text-center text-sm font-mono uppercase tracking-wide">SELECT A NETWORK TO VIEW FILES.</div>
+                    <div className="brutal-text-block text-center">
+                      <p className="brutal-mono text-sm">SELECT A NETWORK TO VIEW FILES</p>
+                    </div>
                   )}
                 </div>
               </CardContent>
