@@ -7,6 +7,18 @@
   50% { transform: translateY(-20px); }
 }
 
+@keyframes auroraMove {
+  0% {
+    background-position: 20% 30%, 80% 20%, 50% 80%;
+  }
+  50% {
+    background-position: 25% 35%, 85% 25%, 55% 85%;
+  }
+  100% {
+    background-position: 20% 30%, 80% 20%, 50% 80%;
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -54,20 +66,27 @@
     --sidebar-border: 220 13% 91%;
 
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Aurora Gradient Palette */
+    --aurora-bg-dark: #050320;
+    --aurora-cyan: #00f6ff;
+    --aurora-violet: #7a00ff;
+    --aurora-blue: #1a8fff;
+    --aurora-white: #f8f9fa;
   }
 
   .dark {
     --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --foreground: var(--aurora-white);
 
     --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card-foreground: var(--aurora-white);
 
     --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover-foreground: var(--aurora-white);
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: var(--aurora-cyan);
+    --primary-foreground: var(--aurora-bg-dark);
 
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
@@ -102,7 +121,24 @@
 
   body {
     @apply bg-background text-foreground;
+    background: var(--aurora-bg-dark);
+    background-image: radial-gradient(at 20% 30%, var(--aurora-cyan) 0%, transparent 60%),
+                      radial-gradient(at 80% 20%, var(--aurora-violet) 0%, transparent 60%),
+                      radial-gradient(at 50% 80%, var(--aurora-blue) 0%, transparent 60%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    animation: auroraMove 30s ease-in-out infinite;
   }
+}
+
+/* Glassmorphism Utility */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: var(--radius);
 }
 
 /* Custom Scrollbar Styles */

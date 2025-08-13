@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Shield, Network, CheckCircle, Lock, Globe, Zap } from 'lucide-react';
@@ -47,32 +46,31 @@ const FeatureGrid = () => {
     <div className="container mx-auto px-6 py-20">
       <div className="text-center mb-16">
         <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-          Why Choose Operata?
+          Why Choose Oper8a?
         </h2>
         <p className="text-xl text-gray-300 max-w-2xl mx-auto">
           Experience next-generation file management with blockchain-powered security
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
         {features.map((feature, index) => (
           <Card 
             key={index} 
-            className="bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl group"
+            className="glass-panel hover:bg-white/10 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl group"
           >
             <CardHeader className="text-center pb-4">
               <div className="relative inline-block mb-4">
-                <div className={`w-16 h-16 bg-gradient-to-r ${feature.gradient} rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300`}>
+                <div className={`w-16 h-16 bg-gradient-to-r ${feature.gradient} rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300 shadow-[0_0_12px_rgba(0,246,255,0.15)]`}>
                   <feature.icon className="w-8 h-8 text-white" />
                 </div>
-                <div className={`absolute inset-0 bg-gradient-to-r ${feature.gradient} rounded-full blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-300`}></div>
               </div>
               <CardTitle className="text-xl font-bold text-white group-hover:text-cyan-300 transition-colors duration-300">
                 {feature.title}
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <CardDescription className="text-gray-300 text-center leading-relaxed">
+              <CardDescription className="text-gray-200 text-center leading-relaxed">
                 {feature.description}
               </CardDescription>
             </CardContent>

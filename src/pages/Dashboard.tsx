@@ -1,4 +1,5 @@
 import StorageAnalytics from '../components/StorageAnalytics';
+import Footer from '../components/Footer';
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -160,23 +161,23 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
+    <div className="relative min-h-screen text-white overflow-hidden">
+      <div className="absolute inset-0 bg-black/45 pointer-events-none"></div>
       {/* Header */}
-      <div className="border-b border-white/10 bg-black/20 backdrop-blur-sm">
+      <div className="glass-panel border border-white/10 shadow-lg">
         <div className="container mx-auto px-4 sm:px-6 py-4">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div className="flex items-center space-x-3">
               <div className="relative">
-                <Shield className="w-6 sm:w-8 h-6 sm:h-8 text-cyan-400" />
-                <div className="absolute inset-0 bg-cyan-400/20 rounded-full blur-md"></div>
+                <Shield className="w-6 sm:w-8 h-6 sm:h-8 text-cyan-400/90" />
               </div>
-              <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+              <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-[var(--aurora-cyan)] to-[var(--aurora-violet)] bg-clip-text text-transparent">
                 Oper8a Dashboard
               </h1>
             </div>
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full sm:w-auto">
               {/* ELO Display */}
-              <div className="bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 px-3 sm:px-4 py-2">
+              <div className="glass-panel rounded-lg px-3 sm:px-4 py-2">
                 <div className="flex items-center space-x-2 sm:space-x-3">
                   <div className="text-center">
                     <div className={`text-sm sm:text-lg font-bold ${getEloColor(userElo)}`}>
@@ -208,13 +209,13 @@ const Dashboard = () => {
                       </DialogTitle>
                     </DialogHeader>
                     {/* IPFS Configuration Panel */}
-                    <Card className="bg-white/5 backdrop-blur-sm border-white/10 shadow-none border-none">
+                    <Card className="glass-panel hover:scale-[1.005] transition-transform duration-300">
                       <CardHeader>
                         <div className="flex items-center space-x-3">
                           <Key className="w-6 h-6 text-orange-400" />
                           <div>
                             <CardTitle className="text-white">Pinata API Keys</CardTitle>
-                            <CardDescription className="text-gray-300">
+                            <CardDescription className="text-gray-200">
                               {hasApiKeys ? 'Update your Pinata credentials' : 'Configure Pinata IPFS storage'}
                             </CardDescription>
                           </div>
@@ -229,7 +230,7 @@ const Dashboard = () => {
                             placeholder="Enter your Pinata API key"
                             value={pinataApiKey}
                             onChange={(e) => setPinataApiKey(e.target.value)}
-                            className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
+                            className="bg-white/5 border border-white/20 rounded px-2 py-1 text-sm text-cyan-200 placeholder:text-cyan-400 focus:outline-none focus:border-cyan-400"
                           />
                         </div>
                         <div className="space-y-2">
@@ -240,13 +241,15 @@ const Dashboard = () => {
                             placeholder="Enter your Pinata secret key"
                             value={pinataSecretKey}
                             onChange={(e) => setPinataSecretKey(e.target.value)}
-                            className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
+                            className="bg-white/5 border border-white/20 rounded px-2 py-1 text-sm text-cyan-200 placeholder:text-cyan-400 focus:outline-none focus:border-cyan-400"
                           />
                         </div>
-                        <Button 
+                        <Button
                           onClick={handleSaveApiKeys}
                           disabled={isLoading || !pinataApiKey || !pinataSecretKey}
-                          className="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700"
+                          variant="aurora"
+                          size="pill"
+                          className="w-full"
                         >
                           {isLoading ? (
                             <>
@@ -271,7 +274,7 @@ const Dashboard = () => {
                       <span className="truncate max-w-[100px] sm:max-w-none">{walletAddress}</span>
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent className="bg-slate-800 border-white/20 text-white">
+                  <DropdownMenuContent className="glass-panel bg-white/5 border-white/20 text-white">
                     <DropdownMenuItem onClick={handleCopyAddress} className="hover:bg-white/10">
                       <Copy className="w-4 h-4 mr-2" />
                       Copy Address
@@ -297,13 +300,13 @@ const Dashboard = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
           {/* Left: Network Manager, Upload File, Network Members (stacked, ~5/12 width) */}
           <div className="lg:col-span-5 flex flex-col gap-4 sm:gap-6">
-            <Card className="bg-white/5 backdrop-blur-sm border-white/10">
+            <Card className="glass-panel hover:scale-[1.005] transition-transform duration-300">
               <CardHeader>
                 <div className="flex items-center space-x-3">
                   <Database className="w-6 h-6 text-blue-400" />
                   <div>
                     <CardTitle className="text-white">Network</CardTitle>
-                    <CardDescription className="text-gray-300">
+                    <CardDescription className="text-gray-200">
                       Manage and select your network
                     </CardDescription>
                   </div>
@@ -319,13 +322,13 @@ const Dashboard = () => {
                 />
               </CardContent>
             </Card>
-            <Card className="bg-white/5 backdrop-blur-sm border-white/10">
+            <Card className="glass-panel hover:scale-[1.005] transition-transform duration-300">
               <CardHeader>
                 <div className="flex items-center space-x-3">
                   <Upload className="w-6 h-6 text-green-400" />
                   <div>
                     <CardTitle className="text-white">Upload File</CardTitle>
-                    <CardDescription className="text-gray-300">
+                    <CardDescription className="text-gray-200">
                       {selectedNetwork 
                         ? `Upload files to ${selectedNetwork.name} network with blockchain tracking`
                         : 'Upload files to your personal storage'
@@ -346,13 +349,13 @@ const Dashboard = () => {
             </Card>
             {/* Network Members */}
             {selectedNetwork && (
-              <Card className="bg-white/5 backdrop-blur-sm border-white/10">
+              <Card className="glass-panel hover:scale-[1.005] transition-transform duration-300">
                 <CardHeader>
                   <div className="flex items-center space-x-3">
                     <Database className="w-5 sm:w-6 h-5 sm:h-6 text-yellow-400" />
                     <div>
                       <CardTitle className="text-white text-base sm:text-lg">Network Members</CardTitle>
-                      <CardDescription className="text-gray-300 text-sm">
+                      <CardDescription className="text-gray-200 text-sm">
                         Members in the selected network
                       </CardDescription>
                     </div>
@@ -384,14 +387,14 @@ const Dashboard = () => {
 
           {/* Right: Personal Files, Network Files (stacked, ~7/12 width) */}
           <div className="lg:col-span-7 flex flex-col gap-4 sm:gap-6">
-            <Card className="bg-white/5 backdrop-blur-sm border-white/10">
+            <Card className="glass-panel hover:scale-[1.005] transition-transform duration-300">
               <CardHeader>
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                   <div className="flex items-center space-x-3">
                     <Database className="w-5 sm:w-6 h-5 sm:h-6 text-purple-400" />
                     <div>
                       <CardTitle className="text-white text-base sm:text-lg">Personal Files</CardTitle>
-                      <CardDescription className="text-gray-300 text-sm">
+                      <CardDescription className="text-gray-200 text-sm">
                         Files stored on IPFS via Pinata with blockchain metadata
                       </CardDescription>
                     </div>
@@ -402,14 +405,14 @@ const Dashboard = () => {
                       value={personalFilesSearch}
                       onChange={e => setPersonalFilesSearch(e.target.value)}
                       placeholder="Search..."
-                      className="bg-transparent border border-white/10 rounded px-2 py-1 text-sm text-cyan-200 focus:outline-none focus:border-cyan-400 placeholder:text-cyan-400 flex-1 sm:w-32"
+                      className="bg-white/5 border border-white/20 rounded px-2 py-1 text-sm text-cyan-200 placeholder:text-cyan-400 focus:outline-none focus:border-cyan-400 flex-1 sm:w-32"
                       style={{ transition: 'border 0.2s' }}
                     />
                     <Button 
                       onClick={handleRefreshFiles}
-                      variant="outline" 
+                      variant="aurora" 
                       size="sm"
-                      className="border-cyan-400/30 bg-cyan-500/10 text-cyan-300 hover:bg-cyan-500/20 hover:text-cyan-200 hover:border-cyan-400/50 whitespace-nowrap"
+                      className="whitespace-nowrap"
                     >
                       <RefreshCw className="w-4 h-4 mr-1 sm:mr-2" />
                       <span className="hidden sm:inline">Refresh</span>
@@ -428,14 +431,14 @@ const Dashboard = () => {
                 </div>
               </CardContent>
             </Card>
-            <Card className="bg-white/5 backdrop-blur-sm border-white/10">
+            <Card className="glass-panel hover:scale-[1.005] transition-transform duration-300">
               <CardHeader>
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                   <div className="flex items-center space-x-3">
                     <Database className="w-5 sm:w-6 h-5 sm:h-6 text-cyan-400" />
                     <div>
                       <CardTitle className="text-white text-base sm:text-lg">Network Files</CardTitle>
-                      <CardDescription className="text-gray-300 text-sm">
+                      <CardDescription className="text-gray-200 text-sm">
                         Files shared in the selected network
                       </CardDescription>
                     </div>
@@ -446,14 +449,14 @@ const Dashboard = () => {
                       value={networkFilesSearch}
                       onChange={e => setNetworkFilesSearch(e.target.value)}
                       placeholder="Search..."
-                      className="bg-transparent border border-white/10 rounded px-2 py-1 text-sm text-cyan-200 focus:outline-none focus:border-cyan-400 placeholder:text-cyan-400 flex-1 sm:w-32"
+                      className="bg-white/5 border border-white/20 rounded px-2 py-1 text-sm text-cyan-200 placeholder:text-cyan-400 focus:outline-none focus:border-cyan-400 flex-1 sm:w-32"
                       style={{ transition: 'border 0.2s' }}
                     />
                     <Button 
                       onClick={handleRefreshFiles}
-                      variant="outline" 
+                      variant="aurora" 
                       size="sm"
-                      className="border-cyan-400/30 bg-cyan-500/10 text-cyan-300 hover:bg-cyan-500/20 hover:text-cyan-200 hover:border-cyan-400/50 whitespace-nowrap"
+                      className="whitespace-nowrap"
                     >
                       <RefreshCw className="w-4 h-4 mr-1 sm:mr-2" />
                       <span className="hidden sm:inline">Refresh</span>
@@ -480,6 +483,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
