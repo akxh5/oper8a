@@ -42,7 +42,7 @@ const NetworkSettings: React.FC<NetworkSettingsProps> = ({ network, userWallet, 
   };
 
   return (
-    <div className="bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 p-3 sm:p-4">
+    <div className="glass-card p-3 sm:p-4 transition-transform duration-300 hover:scale-[1.01] hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]">
       <div className="flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-4">
         <Settings className="w-5 sm:w-6 h-5 sm:h-6 text-gray-400" />
         <h3 className="text-white font-medium text-sm sm:text-base">Network Settings</h3>
@@ -50,7 +50,7 @@ const NetworkSettings: React.FC<NetworkSettingsProps> = ({ network, userWallet, 
 
       <div className="space-y-4">
         {/* Network Info */}
-        <div className="bg-white/5 rounded-lg p-3 border border-white/10">
+        <div className="glass-card p-3">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
               <div className="flex items-center space-x-2 mb-1">
@@ -78,7 +78,7 @@ const NetworkSettings: React.FC<NetworkSettingsProps> = ({ network, userWallet, 
 
         {/* Leave Network Section */}
         {!isAdmin && (
-          <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-3">
+          <div className="glass-card border-red-500/30 p-3">
             <div className="flex items-start space-x-3">
               <AlertTriangle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
               <div className="flex-1">
@@ -164,7 +164,7 @@ const NetworkSettings: React.FC<NetworkSettingsProps> = ({ network, userWallet, 
 
         {/* Admin Notice */}
         {isAdmin && (
-          <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-3">
+          <div className="glass-card border-yellow-500/30 p-3">
             <div className="flex items-start space-x-3">
               <Crown className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5" />
               <div>

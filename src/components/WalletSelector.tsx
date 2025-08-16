@@ -87,7 +87,7 @@ const WalletSelector: React.FC<WalletSelectorProps> = ({ isOpen, onClose }) => {
           {wallets.map((wallet, index) => (
             <Card 
               key={index} 
-              className="bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-300 cursor-pointer group"
+              className="glass-card hover:scale-[1.02] transition-transform duration-300 cursor-pointer group"
               onClick={() => handleWalletConnect(wallet.name)}
             >
               <CardContent className="p-4">

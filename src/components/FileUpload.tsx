@@ -165,12 +165,9 @@ const FileUpload: React.FC<FileUploadProps> = ({
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
         className={`
-          border-2 border-dashed rounded-lg p-4 sm:p-8 text-center transition-all duration-300
-          ${isDragOver 
-            ? 'border-cyan-400 bg-cyan-400/10' 
-            : 'border-white/20 hover:border-white/40'
-          }
-          ${hasApiKeys ? 'cursor-pointer' : 'cursor-not-allowed opacity-50'}
+          glass-card p-6 sm:p-10 text-center transition-all duration-300
+          ${isDragOver ? 'border-cyan-400 bg-cyan-400/10' : ''}
+          ${hasApiKeys ? 'cursor-pointer hover:scale-[1.02]' : 'cursor-not-allowed opacity-50'}
         `}
       >
         {selectedFile ? (

@@ -58,7 +58,7 @@ const NetworkMembers: React.FC<NetworkMembersProps> = ({ network, userWallet }) 
 
   return (
     <div className="space-y-4">
-      <div className="bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 p-3 sm:p-4">
+      <div className="glass-card p-3 sm:p-4">
         <div className="flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-4">
           <Users className="w-5 sm:w-6 h-5 sm:h-6 text-blue-400" />
           <h3 className="text-white font-medium text-sm sm:text-base">Network Members</h3>
@@ -71,7 +71,7 @@ const NetworkMembers: React.FC<NetworkMembersProps> = ({ network, userWallet }) 
           {sortedMembers.map((member, index) => (
             <div 
               key={member.walletAddress}
-              className={`bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 p-3 sm:p-4 hover:bg-white/10 transition-colors ${
+              className={`glass-card p-3 sm:p-4 hover:scale-[1.02] transition-transform duration-300 ${
                 member.walletAddress === userWallet ? 'ring-1 ring-purple-500/50' : ''
               }`}
             >

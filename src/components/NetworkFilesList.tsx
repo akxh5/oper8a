@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -93,7 +92,7 @@ const NetworkFilesList: React.FC<NetworkFilesListProps> = ({ network, userWallet
 
   return (
     <div className="h-full flex flex-col">
-      <div className="bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 p-4 h-full flex flex-col">
+      <div className="glass-card p-4 h-full flex flex-col">
         <div className="flex items-center justify-between mb-7">
           <div className="flex items-center space-x-3">
             <File className="w-6 h-6 text-green-400" />
@@ -122,7 +121,7 @@ const NetworkFilesList: React.FC<NetworkFilesListProps> = ({ network, userWallet
             {filteredFiles.map((file) => (
               <div
                 key={file.id}
-                className="bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 p-3 sm:p-4 hover:bg-white/10 transition-colors max-w-full overflow-hidden"
+                className="glass-card p-3 sm:p-4 hover:scale-[1.02] transition-transform duration-300 max-w-full overflow-hidden"
               >
                 <div className="flex flex-col sm:flex-row items-start justify-between gap-3">
                   <div className="flex-1 min-w-0 w-full">

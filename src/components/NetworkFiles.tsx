@@ -68,7 +68,7 @@ const NetworkFiles: React.FC<NetworkFilesProps> = ({ network, userWallet, refres
   return (
     <div className="space-y-4">
       {/* Network Info Header */}
-      <div className="bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 p-4">
+      <div className="glass-card p-4">
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <Users className="w-6 h-6 text-blue-400" />
@@ -107,7 +107,7 @@ const NetworkFiles: React.FC<NetworkFilesProps> = ({ network, userWallet, refres
           {files.map((file) => (
             <div 
               key={file.id} 
-              className="bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 p-4 hover:bg-white/10 transition-colors"
+              className="glass-card p-4 hover:scale-[1.02] transition-transform duration-300"
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-4 flex-1 min-w-0">

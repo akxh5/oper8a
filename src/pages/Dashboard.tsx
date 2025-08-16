@@ -1,6 +1,7 @@
 import StorageAnalytics from '../components/StorageAnalytics';
 import Footer from '../components/Footer';
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -160,20 +161,35 @@ const Dashboard = () => {
     return 'Novice';
   };
 
+  // Card animation variants for staggered slide-up
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+  };
+
   return (
-    <div className="relative min-h-screen text-white overflow-hidden">
+    <motion.div
+      initial={{ opacity: 0, y: 20, filter: 'brightness(0.8)' }}
+      animate={{ opacity: 1, y: 0, filter: 'brightness(1)' }}
+      transition={{ duration: 1.2, ease: "easeInOut" }}
+      className="relative min-h-screen text-white overflow-hidden"
+      style={{ scrollBehavior: 'smooth' }}
+    >
       <div className="absolute inset-0 bg-black/45 pointer-events-none"></div>
       {/* Header */}
       <div className="glass-panel border border-white/10 shadow-lg">
         <div className="container mx-auto px-4 sm:px-6 py-4">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div className="flex items-center space-x-3">
-              <div className="relative">
+              <div className="relative flex items-center">
                 <Shield className="w-6 sm:w-8 h-6 sm:h-8 text-cyan-400/90" />
               </div>
-              <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-[var(--aurora-cyan)] to-[var(--aurora-violet)] bg-clip-text text-transparent">
-                Oper8a Dashboard
-              </h1>
+              <h1
+  className="text-2xl sm:text-3xl font-bold text-left ml-0 bg-gradient-to-r from-cyan-300 via-blue-400 to-violet-400 bg-clip-text text-transparent drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]"
+  style={{ lineHeight: '1.2' }}
+>
+  Oper8a Dashboard
+</h1>
             </div>
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full sm:w-auto">
               {/* ELO Display */}
@@ -209,12 +225,12 @@ const Dashboard = () => {
                       </DialogTitle>
                     </DialogHeader>
                     {/* IPFS Configuration Panel */}
-                    <Card className="glass-panel hover:scale-[1.005] transition-transform duration-300">
+                    <Card className="glass-card hover:scale-[1.005] transition-transform duration-300">
                       <CardHeader>
                         <div className="flex items-center space-x-3">
                           <Key className="w-6 h-6 text-orange-400" />
                           <div>
-                            <CardTitle className="text-white">Pinata API Keys</CardTitle>
+                            <CardTitle className="text-white text-base sm:text-lg">Pinata API Keys</CardTitle>
                             <CardDescription className="text-gray-200">
                               {hasApiKeys ? 'Update your Pinata credentials' : 'Configure Pinata IPFS storage'}
                             </CardDescription>
@@ -297,194 +313,215 @@ const Dashboard = () => {
       </div>
 
       <div className="container mx-auto px-4 py-4 sm:py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
-          {/* Left: Network Manager, Upload File, Network Members (stacked, ~5/12 width) */}
-          <div className="lg:col-span-5 flex flex-col gap-4 sm:gap-6">
-            <Card className="glass-panel hover:scale-[1.005] transition-transform duration-300">
-              <CardHeader>
-                <div className="flex items-center space-x-3">
-                  <Database className="w-6 h-6 text-blue-400" />
-                  <div>
-                    <CardTitle className="text-white">Network</CardTitle>
-                    <CardDescription className="text-gray-200">
-                      Manage and select your network
-                    </CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <NetworkManager
-                  userWallet={fullWalletAddress}
-                  username={username}
-                  onNetworkSelect={handleNetworkSelect}
-                  selectedNetwork={selectedNetwork}
-                  scrollIfMany={true}
-                />
-              </CardContent>
-            </Card>
-            <Card className="glass-panel hover:scale-[1.005] transition-transform duration-300">
-              <CardHeader>
-                <div className="flex items-center space-x-3">
-                  <Upload className="w-6 h-6 text-green-400" />
-                  <div>
-                    <CardTitle className="text-white">Upload File</CardTitle>
-                    <CardDescription className="text-gray-200">
-                      {selectedNetwork 
-                        ? `Upload files to ${selectedNetwork.name} network with blockchain tracking`
-                        : 'Upload files to your personal storage'
-                      }
-                    </CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <FileUpload 
-                  hasApiKeys={hasApiKeys} 
-                  onFileUploaded={handleFileUploaded}
-                  selectedNetwork={selectedNetwork}
-                  userWallet={fullWalletAddress}
-                  username={username}
-                />
-              </CardContent>
-            </Card>
-            {/* Network Members */}
-            {selectedNetwork && (
-              <Card className="glass-panel hover:scale-[1.005] transition-transform duration-300">
-                <CardHeader>
-                  <div className="flex items-center space-x-3">
-                    <Database className="w-5 sm:w-6 h-5 sm:h-6 text-yellow-400" />
-                    <div>
-                      <CardTitle className="text-white text-base sm:text-lg">Network Members</CardTitle>
-                      <CardDescription className="text-gray-200 text-sm">
-                        Members in the selected network
-                      </CardDescription>
+        <motion.div
+          variants={{
+            hidden: {},
+            show: { transition: { staggerChildren: 0.15 } }
+          }}
+          initial="hidden"
+          animate="show"
+        >
+          <motion.div
+            className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6"
+            variants={{}}
+          >
+            {/* Left: Network Manager, Upload File, Network Members (stacked, ~5/12 width) */}
+            <div className="lg:col-span-5 flex flex-col gap-4 sm:gap-6">
+              <motion.div variants={cardVariants}>
+                <Card className="glass-card hover:scale-[1.005] transition-transform duration-300">
+                  <CardHeader>
+                    <div className="flex items-center space-x-3">
+                      <Database className="w-6 h-6 text-blue-400" />
+                      <div>
+                        <CardTitle className="text-white text-base sm:text-lg">Network</CardTitle>
+                        <CardDescription className="text-gray-200">
+                          Manage and select your network
+                        </CardDescription>
+                      </div>
                     </div>
-                  </div>
-                </CardHeader>
-                <CardContent className="px-2 sm:px-4">
-                  <div className="max-h-[300px] overflow-y-auto custom-scrollbar">
-                    <NetworkMembers 
-                      network={selectedNetwork} 
+                  </CardHeader>
+                  <CardContent>
+                    <NetworkManager
                       userWallet={fullWalletAddress}
+                      username={username}
+                      onNetworkSelect={handleNetworkSelect}
+                      selectedNetwork={selectedNetwork}
+                      scrollIfMany={true}
                     />
-                  </div>
-                </CardContent>
-              </Card>
-            )}
-
-            {/* Network Settings */}
-            {selectedNetwork && (
-              <NetworkSettings 
-                network={selectedNetwork} 
-                userWallet={fullWalletAddress}
-                onNetworkLeft={() => {
-                  setSelectedNetwork(undefined);
-                  setRefreshTrigger(prev => prev + 1);
-                }}
-              />
-            )}
-          </div>
-
-          {/* Right: Personal Files, Network Files (stacked, ~7/12 width) */}
-          <div className="lg:col-span-7 flex flex-col gap-4 sm:gap-6">
-            <Card className="glass-panel hover:scale-[1.005] transition-transform duration-300">
-              <CardHeader>
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                  <div className="flex items-center space-x-3">
-                    <Database className="w-5 sm:w-6 h-5 sm:h-6 text-purple-400" />
-                    <div>
-                      <CardTitle className="text-white text-base sm:text-lg">Personal Files</CardTitle>
-                      <CardDescription className="text-gray-200 text-sm">
-                        Files stored on IPFS via Pinata with blockchain metadata
-                      </CardDescription>
+                  </CardContent>
+                </Card>
+              </motion.div>
+              <motion.div variants={cardVariants}>
+                <Card className="glass-card hover:scale-[1.005] transition-transform duration-300">
+                  <CardHeader>
+                    <div className="flex items-center space-x-3">
+                      <Upload className="w-6 h-6 text-green-400" />
+                      <div>
+                        <CardTitle className="text-white text-base sm:text-lg">Upload File</CardTitle>
+                        <CardDescription className="text-gray-200">
+                          {selectedNetwork 
+                            ? `Upload files to ${selectedNetwork.name} network with blockchain tracking`
+                            : 'Upload files to your personal storage'
+                          }
+                        </CardDescription>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex items-center gap-2 w-full sm:w-auto">
-                    <input
-                      type="text"
-                      value={personalFilesSearch}
-                      onChange={e => setPersonalFilesSearch(e.target.value)}
-                      placeholder="Search..."
-                      className="bg-white/5 border border-white/20 rounded px-2 py-1 text-sm text-cyan-200 placeholder:text-cyan-400 focus:outline-none focus:border-cyan-400 flex-1 sm:w-32"
-                      style={{ transition: 'border 0.2s' }}
+                  </CardHeader>
+                  <CardContent>
+                    <FileUpload 
+                      hasApiKeys={hasApiKeys} 
+                      onFileUploaded={handleFileUploaded}
+                      selectedNetwork={selectedNetwork}
+                      userWallet={fullWalletAddress}
+                      username={username}
                     />
-                    <Button 
-                      onClick={handleRefreshFiles}
-                      variant="aurora" 
-                      size="sm"
-                      className="whitespace-nowrap"
-                    >
-                      <RefreshCw className="w-4 h-4 mr-1 sm:mr-2" />
-                      <span className="hidden sm:inline">Refresh</span>
-                    </Button>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent className="pt-2 pb-2 px-2 sm:px-4">
-                <div className="max-h-[400px] sm:max-h-[560px] min-h-[300px] sm:min-h-[400px] overflow-y-auto custom-scrollbar">
-                  <FileRecords 
-                    refreshTrigger={refreshTrigger} 
+                  </CardContent>
+                </Card>
+              </motion.div>
+              {/* Network Members */}
+              {selectedNetwork && (
+                <motion.div variants={cardVariants}>
+                  <Card className="glass-card hover:scale-[1.005] transition-transform duration-300">
+                    <CardHeader>
+                      <div className="flex items-center space-x-3">
+                        <Database className="w-5 sm:w-6 h-5 sm:h-6 text-yellow-400" />
+                        <div>
+                          <CardTitle className="text-white text-base sm:text-lg">Network Members</CardTitle>
+                          <CardDescription className="text-gray-200 text-sm">
+                            Members in the selected network
+                          </CardDescription>
+                        </div>
+                      </div>
+                    </CardHeader>
+                    <CardContent className="px-2 sm:px-4">
+                      <div className="max-h-[300px] overflow-y-auto custom-scrollbar">
+                        <NetworkMembers 
+                          network={selectedNetwork} 
+                          userWallet={fullWalletAddress}
+                        />
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              )}
+              {/* Network Settings */}
+              {selectedNetwork && (
+                <motion.div variants={cardVariants}>
+                  <NetworkSettings 
+                    network={selectedNetwork} 
                     userWallet={fullWalletAddress}
-                    maxFiles={10}
-                    search={personalFilesSearch}
+                    onNetworkLeft={() => {
+                      setSelectedNetwork(undefined);
+                      setRefreshTrigger(prev => prev + 1);
+                    }}
                   />
-                </div>
-              </CardContent>
-            </Card>
-            <Card className="glass-panel hover:scale-[1.005] transition-transform duration-300">
-              <CardHeader>
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                  <div className="flex items-center space-x-3">
-                    <Database className="w-5 sm:w-6 h-5 sm:h-6 text-cyan-400" />
-                    <div>
-                      <CardTitle className="text-white text-base sm:text-lg">Network Files</CardTitle>
-                      <CardDescription className="text-gray-200 text-sm">
-                        Files shared in the selected network
-                      </CardDescription>
+                </motion.div>
+              )}
+            </div>
+            {/* Right: Personal Files, Network Files (stacked, ~7/12 width) */}
+            <div className="lg:col-span-7 flex flex-col gap-4 sm:gap-6">
+              <motion.div variants={cardVariants}>
+                <Card className="glass-card hover:scale-[1.005] transition-transform duration-300">
+                  <CardHeader>
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                      <div className="flex items-center space-x-3">
+                        <Database className="w-5 sm:w-6 h-5 sm:h-6 text-purple-400" />
+                        <div>
+                          <CardTitle className="text-white text-base sm:text-lg">Personal Files</CardTitle>
+                          <CardDescription className="text-gray-200 text-sm">
+                            Files stored on IPFS via Pinata with blockchain metadata
+                          </CardDescription>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2 w-full sm:w-auto">
+                        <input
+                          type="text"
+                          value={personalFilesSearch}
+                          onChange={e => setPersonalFilesSearch(e.target.value)}
+                          placeholder="Search..."
+                          className="bg-white/5 border border-white/20 rounded px-2 py-1 text-sm text-cyan-200 placeholder:text-cyan-400 focus:outline-none focus:border-cyan-400 flex-1 sm:w-32"
+                          style={{ transition: 'border 0.2s' }}
+                        />
+                        <Button 
+                          onClick={handleRefreshFiles}
+                          variant="aurora" 
+                          size="sm"
+                          className="whitespace-nowrap"
+                        >
+                          <RefreshCw className="w-4 h-4 mr-1 sm:mr-2" />
+                          <span className="hidden sm:inline">Refresh</span>
+                        </Button>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex items-center gap-2 w-full sm:w-auto">
-                    <input
-                      type="text"
-                      value={networkFilesSearch}
-                      onChange={e => setNetworkFilesSearch(e.target.value)}
-                      placeholder="Search..."
-                      className="bg-white/5 border border-white/20 rounded px-2 py-1 text-sm text-cyan-200 placeholder:text-cyan-400 focus:outline-none focus:border-cyan-400 flex-1 sm:w-32"
-                      style={{ transition: 'border 0.2s' }}
-                    />
-                    <Button 
-                      onClick={handleRefreshFiles}
-                      variant="aurora" 
-                      size="sm"
-                      className="whitespace-nowrap"
-                    >
-                      <RefreshCw className="w-4 h-4 mr-1 sm:mr-2" />
-                      <span className="hidden sm:inline">Refresh</span>
-                    </Button>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent className="pt-2 pb-2 px-2 sm:px-4">
-                <div className="max-h-[400px] sm:max-h-[560px] min-h-[300px] sm:min-h-[400px] overflow-y-auto custom-scrollbar">
-                  {selectedNetwork ? (
-                    <NetworkFilesList 
-                      network={selectedNetwork} 
-                      userWallet={fullWalletAddress}
-                      refreshTrigger={refreshTrigger}
-                      search={networkFilesSearch}
-                    />
-                  ) : (
-                    <div className="text-gray-400 p-4 text-center text-sm">Select a network to view files.</div>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
-          
-          </div>
-        </div>
+                  </CardHeader>
+                  <CardContent className="pt-2 pb-2 px-2 sm:px-4">
+                    <div className="max-h-[400px] sm:max-h-[560px] min-h-[300px] sm:min-h-[400px] overflow-y-auto custom-scrollbar">
+                      <FileRecords 
+                        refreshTrigger={refreshTrigger} 
+                        userWallet={fullWalletAddress}
+                        maxFiles={10}
+                        search={personalFilesSearch}
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+              <motion.div variants={cardVariants}>
+                <Card className="glass-card hover:scale-[1.005] transition-transform duration-300">
+                  <CardHeader>
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                      <div className="flex items-center space-x-3">
+                        <Database className="w-5 sm:w-6 h-5 sm:h-6 text-cyan-400" />
+                        <div>
+                          <CardTitle className="text-white text-base sm:text-lg">Network Files</CardTitle>
+                          <CardDescription className="text-gray-200 text-sm">
+                            Files shared in the selected network
+                          </CardDescription>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2 w-full sm:w-auto">
+                        <input
+                          type="text"
+                          value={networkFilesSearch}
+                          onChange={e => setNetworkFilesSearch(e.target.value)}
+                          placeholder="Search..."
+                          className="bg-white/5 border border-white/20 rounded px-2 py-1 text-sm text-cyan-200 placeholder:text-cyan-400 focus:outline-none focus:border-cyan-400 flex-1 sm:w-32"
+                          style={{ transition: 'border 0.2s' }}
+                        />
+                        <Button 
+                          onClick={handleRefreshFiles}
+                          variant="aurora" 
+                          size="sm"
+                          className="whitespace-nowrap"
+                        >
+                          <RefreshCw className="w-4 h-4 mr-1 sm:mr-2" />
+                          <span className="hidden sm:inline">Refresh</span>
+                        </Button>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="pt-2 pb-2 px-2 sm:px-4">
+                    <div className="max-h-[400px] sm:max-h-[560px] min-h-[300px] sm:min-h-[400px] overflow-y-auto custom-scrollbar">
+                      {selectedNetwork ? (
+                        <NetworkFilesList 
+                          network={selectedNetwork} 
+                          userWallet={fullWalletAddress}
+                          refreshTrigger={refreshTrigger}
+                          search={networkFilesSearch}
+                        />
+                      ) : (
+                        <div className="text-gray-400 p-4 text-center text-sm">Select a network to view files.</div>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
       <Footer />
-    </div>
+    </motion.div>
   );
 };
 

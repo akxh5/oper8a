@@ -57,7 +57,7 @@ const DuplicateAlerts: React.FC<DuplicateAlertsProps> = ({
   }
 
   return (
-    <Card className="bg-orange-500/5 border-orange-500/20">
+    <Card className="glass-card">
       <CardHeader>
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
@@ -80,10 +80,8 @@ const DuplicateAlerts: React.FC<DuplicateAlertsProps> = ({
         {alerts.slice(0, 5).map((alert) => (
           <div 
             key={alert.id}
-            className={`p-4 rounded-lg border transition-all ${
-              alert.isRead 
-                ? 'bg-gray-800/50 border-gray-600/30' 
-                : 'bg-orange-500/10 border-orange-500/30'
+            className={`p-4 rounded-lg transition-all glass-card ${
+              alert.isRead ? 'opacity-70' : 'opacity-100'
             }`}
           >
             <div className="flex items-start justify-between">

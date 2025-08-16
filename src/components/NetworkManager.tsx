@@ -103,8 +103,8 @@ const NetworkManager: React.FC<NetworkManagerProps> = ({
     return network.adminWallet === userWallet;
   };
 
-  return (
-    <Card className="bg-white/5 backdrop-blur-sm border-white/10">
+return (
+    <Card className="glass-card transition-transform duration-300 hover:scale-[1.02]">
       <CardHeader>
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div className="flex items-center space-x-3">
@@ -223,10 +223,10 @@ const NetworkManager: React.FC<NetworkManagerProps> = ({
             networks.map((network) => (
               <div
                 key={network.id}
-                className={`p-3 rounded-lg border cursor-pointer transition-colors ${
+                className={`glass-card p-3 cursor-pointer transition-transform duration-300 hover:scale-[1.02] ${
                   selectedNetwork?.id === network.id
-                    ? 'bg-blue-500/20 border-blue-500/50'
-                    : 'bg-white/5 border-white/10 hover:bg-white/10'
+                    ? 'ring-2 ring-blue-400'
+                    : ''
                 }`}
                 onClick={() => onNetworkSelect(network)}
               >

@@ -13,7 +13,7 @@ const NotFound = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center text-white">
-      <div className="glass-panel text-center p-8 rounded-xl border border-white/20 shadow-lg">
+      <div className="glass-card text-center p-8 rounded-xl border border-white/20 shadow-lg">
         <div className="text-center">
           <h1 className="text-6xl font-bold mb-4 bg-gradient-to-r from-[var(--aurora-cyan)] to-[var(--aurora-violet)] bg-clip-text text-transparent">404</h1>
           <p className="text-xl text-gray-300 mb-4">Oops! Page not found</p>

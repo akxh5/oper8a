@@ -71,7 +71,7 @@ const StorageAnalytics: React.FC<StorageAnalyticsProps> = ({ userWallet, compact
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center py-4">
+      <div className="glass-card flex flex-col items-center py-4 p-4">
         <Loader2 className="animate-spin w-6 h-6 text-cyan-400 mb-2" />
         <div className="text-gray-300 text-xs">Loading analytics...</div>
       </div>
@@ -80,7 +80,7 @@ const StorageAnalytics: React.FC<StorageAnalyticsProps> = ({ userWallet, compact
 
   if (onlyCounts) {
     return (
-      <div className="flex flex-col items-center gap-2 text-base">
+      <div className="glass-card flex flex-col items-center gap-2 text-base p-4">
         <div className="flex w-full justify-between">
           <span className="text-cyan-400">Network Files</span>
           <span className="font-bold text-cyan-300">{typeof networkFiles === 'number' ? networkFiles : 0}</span>
@@ -94,7 +94,7 @@ const StorageAnalytics: React.FC<StorageAnalyticsProps> = ({ userWallet, compact
   }
 
   return (
-    <div className="flex flex-col items-center space-y-6">
+    <div className="glass-card flex flex-col items-center space-y-6 p-4 transition-transform duration-300 hover:scale-[1.01]">
       <div className="w-full flex flex-col items-center">
         <div className="text-lg font-bold text-cyan-300 mb-1">
           {usedGB} GB <span className="text-gray-400 font-normal">/ {limitGB} GB</span>

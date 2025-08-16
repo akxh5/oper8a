@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -85,7 +84,6 @@ const FileRecords: React.FC<FileRecordsProps> = ({ refreshTrigger, userWallet, m
       <div className="text-center py-12">
         <RefreshCw className="w-8 h-8 text-cyan-400 mx-auto mb-4 animate-spin" />
         <p className="text-gray-300">Loading files from blockchain...</p>
-        <p className="text-gray-300">Loading files from blockchain...</p>
       </div>
     );
   }
@@ -134,7 +132,7 @@ const FileRecords: React.FC<FileRecordsProps> = ({ refreshTrigger, userWallet, m
       {(maxFiles ? filteredFiles.slice(0, maxFiles) : filteredFiles).map((file) => (
         <div
           key={file.id}
-          className="bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 p-3 sm:p-4 hover:bg-white/10 transition-colors"
+          className="glass-card p-3 sm:p-4 hover:scale-[1.02] transition-transform duration-300"
         >
           <div className="flex flex-col sm:flex-row items-start justify-between gap-3">
             <div className="flex-1 min-w-0 w-full">
