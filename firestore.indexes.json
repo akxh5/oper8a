@@ -1,0 +1,21 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "networkFiles",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "networkId", "order": "ASCENDING" },
+        { "fieldPath": "uploadDate", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "networkAlerts",
+      "queryScope": "COLLECTION", 
+      "fields": [
+        { "fieldPath": "networkId", "order": "ASCENDING" },
+        { "fieldPath": "createdAt", "order": "DESCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

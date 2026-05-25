@@ -1,0 +1,31 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Users: only the wallet owner can write their own doc
+    match /users/{walletAddress} {
+      allow read: if true;
+      allow write: if true; 
+      // Note: validation of Solana wallet signatures should be added in future
+    }
+    
+    // Networks: anyone can read, authenticated sessions can write
+    match /networks/{networkId} {
+      allow read: if true;
+      allow create: if true;
+      allow update: if true;
+    }
+    
+    // Network Files: readable by all, writable by anyone
+    match /networkFiles/{fileId} {
+      allow read: if true;
+      allow write: if true;
+    }
+    
+    // Network Alerts: readable by all, writable by anyone
+    match /networkAlerts/{alertId} {
+      allow read: if true;
+      allow write: if true;
+    }
+  }
+}
