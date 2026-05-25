@@ -12,7 +12,7 @@ import { walletConnection } from './utils/walletConnection';
 
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY_HERE",
+  apiKey: "",
   authDomain: "operata-firebase.firebaseapp.com",
   projectId: "operata-firebase",
   storageBucket: "operata-firebase.appspot.com",
