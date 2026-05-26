@@ -8,6 +8,12 @@ function CountUp({ to, suffix = "", prefix = "" }: { to: number; suffix?: string
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   useEffect(() => {
+    const isMobile = window.innerWidth < 768;
+    if (isMobile) {
+      if (inView) setCount(to);
+      return;
+    }
+
     if (inView) {
       const obj = { val: 0 };
       gsap.to(obj, {
@@ -23,6 +29,16 @@ function CountUp({ to, suffix = "", prefix = "" }: { to: number; suffix?: string
 }
 
 export default function Stats() {
+  const [isMobile, setIsMobile] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+    setPrefersReducedMotion(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  }, []);
+
+  const skipAnimations = isMobile || prefersReducedMotion;
+
   return (
     <section className="border-y border-[#1a1a3a] py-12 sm:py-16 md:py-20 overflow-hidden w-full px-4 sm:px-6">
       <div className="mx-auto flex flex-col md:flex-row max-w-6xl items-center justify-center gap-12 md:gap-0 md:divide-x divide-[#1a1a3a] w-full">
@@ -39,9 +55,9 @@ export default function Stats() {
           <div className="mt-3 text-[10px] sm:text-xs uppercase tracking-widest text-[#555570]">Verifiable</div>
         </div>
         <div className="flex-1 text-center w-full">
-          <motion.div 
-            initial={{ scale: 0.5, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
+          <motion.div
+            initial={skipAnimations ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0 }}
+            whileInView={skipAnimations ? { scale: 1, opacity: 1 } : { scale: 1, opacity: 1 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
             className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white"

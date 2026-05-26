@@ -33,7 +33,10 @@ export default function Hero({ onConnect }: HeroProps) {
       </Suspense>
       <div className="pointer-events-none absolute inset-0 z-[1] hero-overlay pointer-events-none" />
 
-      <div className="relative z-10 mx-auto flex max-w-6xl flex-col items-center text-center w-full">
+      <div 
+        className="relative z-10 mx-auto flex max-w-6xl flex-col items-center text-center w-full"
+        style={{ willChange: 'transform', transform: 'translateZ(0)' }}
+      >
         <motion.span
           initial={{ opacity: 0, y: 16 }} 
           animate={{ opacity: 1, y: 0 }}

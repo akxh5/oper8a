@@ -76,22 +76,52 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "oper8a — File Integrity, On-Chain" },
-      { name: "description", content: "Blockchain-Powered File Verification & Management on Solana + IPFS." },
-      { property: "og:title", content: "oper8a — File Integrity, On-Chain" },
-      { property: "og:description", content: "Tamper-proof, verifiable, permanent." },
+      { title: "oper8a — Blockchain File Verification on Solana" },
+      { name: "description", content: "oper8a anchors every file to the Solana blockchain. Tamper-proof, verifiable, permanent file integrity for teams who can't afford to be wrong." },
+      { name: "keywords", content: "blockchain file verification, Solana, IPFS, file integrity, tamper-proof, Web3, decentralized storage" },
+      { name: "author", content: "oper8a" },
+      { name: "robots", content: "index, follow" },
+      
+      // Open Graph
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://oper8a.up.railway.app/" },
+      { property: "og:title", content: "oper8a — Blockchain File Verification on Solana" },
+      { property: "og:description", content: "Every file anchored on-chain. Tamper-proof. Permanent. Verifiable by anyone." },
+      { property: "og:image", content: "https://oper8a.up.railway.app/assets/og-image.png" },
+      
+      // Twitter Card
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:url", content: "https://oper8a.up.railway.app/" },
+      { name: "twitter:title", content: "oper8a — File Integrity, On-Chain" },
+      { name: "twitter:description", content: "Every file anchored on Solana. Tamper-proof, verifiable, permanent." },
+      { name: "twitter:image", content: "https://oper8a.up.railway.app/assets/og-image.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap",
-      },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap" },
+      { rel: "canonical", href: "https://oper8a.up.railway.app/" },
     ],
+    script: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "oper8a",
+          "description": "Blockchain-powered file verification on Solana. Upload, anchor on-chain, verify forever.",
+          "url": "https://oper8a.up.railway.app",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "Web",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          }
+        })
+      }
+    ]
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -118,6 +148,11 @@ function RootComponent() {
   const location = useLocation();
 
   useEffect(() => {
+    const isMobile = window.innerWidth < 768 || 
+      /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    if (isMobile) return;
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),

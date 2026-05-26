@@ -25,16 +25,26 @@ function CyclingHash() {
 const EXPO_OUT = [0.16, 1, 0.3, 1] as const;
 
 export default function Features() {
+  const [isMobile, setIsMobile] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+    setPrefersReducedMotion(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  }, []);
+
+  const skipAnimations = isMobile || prefersReducedMotion;
+
   const cardVariants = (index: number) => ({
-    initial: { opacity: 0, y: 32 },
+    initial: skipAnimations ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true, margin: "-60px" },
     transition: { 
       duration: 0.5, 
       ease: EXPO_OUT, 
-      delay: index * 0.08 
+      delay: skipAnimations ? 0 : index * 0.08 
     },
-    whileHover: { 
+    whileHover: skipAnimations ? {} : { 
       scale: 1.015,
       transition: { duration: 0.2, ease: EXPO_OUT }
     },
@@ -44,7 +54,7 @@ export default function Features() {
     <section id="features" className="relative px-4 sm:px-6 lg:px-8 py-20 md:py-32 overflow-hidden w-full">
       <div className="mx-auto max-w-7xl w-full">
         <motion.h2
-          initial={{ opacity: 0, y: 30 }}
+          initial={skipAnimations ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: EXPO_OUT }}
           viewport={{ once: true, margin: "-80px" }}

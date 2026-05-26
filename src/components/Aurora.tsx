@@ -45,8 +45,12 @@ export default function Aurora() {
   const ref = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number>(0);
   const isInViewRef = useRef<boolean>(true);
+  const isMobile = useRef<boolean>(false);
 
   useEffect(() => {
+    isMobile.current = window.innerWidth < 768;
+    if (isMobile.current) return;
+
     const container = ref.current;
     if (!container) return;
 
@@ -99,6 +103,7 @@ export default function Aurora() {
       const h = container.clientHeight;
       renderer.setSize(w, h);
       uniforms.iResolution.value.set(w, h);
+      isMobile.current = window.innerWidth < 768;
     };
     window.addEventListener("resize", onResize);
 
@@ -114,6 +119,17 @@ export default function Aurora() {
       }
     };
   }, []);
+
+  if (typeof window !== 'undefined' && window.innerWidth < 768) {
+    return (
+      <div 
+        className="absolute inset-0 z-0"
+        style={{ 
+          background: 'radial-gradient(ellipse at 50% 0%, rgba(0,246,255,0.15) 0%, transparent 60%), #050320'
+        }}
+      />
+    );
+  }
 
   return (
     <div

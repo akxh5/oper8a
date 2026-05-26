@@ -50,7 +50,7 @@ function Dashboard() {
   const activeAddress = walletAddress || storedAddress;
 
   useGSAP(() => {
-    if (!activeAddress) return;
+    if (!activeAddress || isMobile) return;
 
     const tl = gsap.timeline();
     
