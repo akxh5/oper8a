@@ -3,13 +3,12 @@ import { getFirestore, doc, getDoc, setDoc, updateDoc } from 'firebase/firestore
 
 // Firebase configuration using environment variables
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
-  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyCKm0an1RQW0U4cwjexE7T2dk1K9eeGoSQ",
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "oper8a-1580c.firebaseapp.com",
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "oper8a-1580c",
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "oper8a-1580c.firebasestorage.app",
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "219492911660",
+  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:219492911660:web:d18c64a623cb82971b1f89",
 }
 
 // Initialize Firebase

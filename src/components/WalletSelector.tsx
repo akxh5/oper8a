@@ -30,35 +30,39 @@ export default function WalletSelector({ open, onClose }: Props) {
   }, [open, onClose]);
 
   async function connectPhantom() {
-    setConnecting(true);
     try {
-      const { publicKey } = await walletConnection.connect();
+      setConnecting(true);
+      const resp = await (window as any).solana.connect();
+      const address = resp.publicKey.toString();
       
-      // Save to localStorage
-      localStorage.setItem("walletConnected", "true");
-      localStorage.setItem("walletAddress", publicKey);
+      // 1. Save to localStorage immediately
+      localStorage.setItem('walletConnected', 'true');
+      localStorage.setItem('walletAddress', address);
       
-      // Update context IMMEDIATELY
-      setWalletAddress(publicKey);
-
-      // Initialize Firestore user
-      const ref = doc(db, "users", publicKey);
-      const snap = await getDoc(ref);
-      if (!snap.exists()) {
-        await setDoc(ref, { elo: 2701, lastUpdated: new Date().toISOString() });
+      // 2. Update context immediately  
+      setWalletAddress(address);
+      
+      // 3. Initialize Firebase user
+      try {
+        const userRef = doc(db, 'users', address);
+        const userSnap = await getDoc(userRef);
+        if (!userSnap.exists()) {
+          await setDoc(userRef, { elo: 2701, lastUpdated: new Date().toISOString() });
+        }
+      } catch (e) {
+        console.warn('User init failed, continuing:', e);
       }
-
-      toast.success("Wallet connected");
-      onClose();
       
-      // Hard redirect after short delay
-      setTimeout(() => {
-        window.location.href = '/dashboard';
-      }, 300);
-    } catch (e) {
-      const msg = e instanceof Error ? e.message : "Failed to connect wallet";
-      toast.error(msg);
-    } finally {
+      // 4. Close modal
+      if (onClose) onClose();
+      
+      // 5. Hard redirect - no setTimeout needed
+      window.location.href = '/dashboard';
+      
+    } catch (err: any) {
+      if (err.code !== 4001) { // 4001 = user rejected
+        toast.error('Connection failed. Please try again.');
+      }
       setConnecting(false);
     }
   }
