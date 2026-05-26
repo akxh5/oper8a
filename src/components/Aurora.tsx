@@ -120,7 +120,7 @@ export default function Aurora() {
       ref={ref}
       aria-hidden
       className="pointer-events-none absolute inset-0"
-      style={{ opacity: 0.65, zIndex: 0 }}
+      style={{ opacity: 0.65, zIndex: 0, touchAction: 'none' }}
     />
   );
 }

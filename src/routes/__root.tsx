@@ -121,11 +121,12 @@ function RootComponent() {
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      lerp: 0.1,
-      wheelMultiplier: 1,
+      touchMultiplier: 2,
+      touchInertiaMultiplier: 35,
+      smoothTouch: false, // CRITICAL: disable smooth on touch devices
+      syncTouch: true,
       infinite: false,
       gestureOrientation: "vertical",
-      smoothWheel: true,
     });
 
     lenis.on("scroll", ScrollTrigger.update);

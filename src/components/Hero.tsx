@@ -31,7 +31,7 @@ export default function Hero({ onConnect }: HeroProps) {
           <Aurora />
         </div>
       </Suspense>
-      <div className="pointer-events-none absolute inset-0 z-[1] hero-overlay" />
+      <div className="pointer-events-none absolute inset-0 z-[1] hero-overlay pointer-events-none" />
 
       <div className="relative z-10 mx-auto flex max-w-6xl flex-col items-center text-center w-full">
         <motion.span

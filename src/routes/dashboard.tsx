@@ -109,7 +109,7 @@ function Dashboard() {
             muted
             playsInline
             preload="auto"
-            className="fixed top-0 left-0 w-full h-full object-cover z-0 opacity-30"
+            className="fixed top-0 left-0 w-full h-full object-cover z-0 opacity-30 pointer-events-none touch-none"
           >
             <source src="/assets/motion_compressed.mp4" type="video/mp4" />
           </video>
