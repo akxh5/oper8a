@@ -56,7 +56,7 @@ export default function NetworkManager() {
     if (!joinKey.trim()) return toast.error("Join key required");
     setLoading(true);
     try {
-      const joinedNet = await joinNetwork("", joinKey.trim(), walletAddress, "User") as unknown as Network;
+      const joinedNet = await joinNetwork(joinKey.trim(), walletAddress, "User") as unknown as Network;
       toast.success("Joined network");
       setJoinKey("");
       refreshFiles();

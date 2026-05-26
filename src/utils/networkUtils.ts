@@ -114,19 +114,35 @@ export const createNetwork = async (
 };
 
 export const joinNetwork = async (
-  networkName: string,
   joinKey: string,
   userWallet: string,
   username: string
 ): Promise<Network> => {
   const sanitizedUsername = sanitize(username);
-  const q = query(
-    collection(db, 'networks'),
-    where('name', '==', networkName),
-    where('joinKey', '==', joinKey)
-  );
+  const cleanKey = joinKey.trim();
+
+  console.log('[joinNetwork] Searching for key:', cleanKey);
+
+  const networksRef = collection(db, 'networks');
+  const q = query(networksRef, where('joinKey', '==', cleanKey));
   const snapshot = await getDocs(q);
-  if (snapshot.empty) throw new Error('Network not found or invalid join key');
+
+  console.log('[joinNetwork] Results found:', snapshot.size);
+
+  if (snapshot.empty) {
+    // Debug: fetch all networks and log their keys
+    try {
+      const allNetworks = await getDocs(collection(db, 'networks'));
+      console.log('[joinNetwork] All available network keys for debug:');
+      allNetworks.forEach(doc => {
+        console.log(' -', doc.data().name, '| key:', doc.data().joinKey);
+      });
+    } catch (e) {
+      console.warn('Failed to fetch debug network list:', e);
+    }
+    throw new Error('Network not found or invalid join key');
+  }
+
   const networkDoc = snapshot.docs[0];
   const networkData = networkDoc.data();
   if (networkData.members.some((m: any) => m.walletAddress === userWallet)) {
