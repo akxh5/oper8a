@@ -95,6 +95,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:title", content: "oper8a — File Integrity, On-Chain" },
       { name: "twitter:description", content: "Every file anchored on Solana. Tamper-proof, verifiable, permanent." },
       { name: "twitter:image", content: "https://oper8a.up.railway.app/assets/og-image.png" },
+      { name: "google-site-verification", content: "6i41ipLykvwWWzCN158atJ1Ble01LnCnZXhi9l94Lrw" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
